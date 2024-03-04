@@ -1,0 +1,29 @@
+if not "%minimized%"=="" goto :minimized
+set minimized=true
+@echo off
+
+start /min cmd /C "npm install -g nodemon"
+
+cd "C:\Users\KAISS_CUR\Desktop\ProjetApi\Backend_Radical"
+
+start /min cmd /C "npm install"
+start /min cmd /C "nodemon app.js"
+
+@REM "C:\Program Files\MongoDB\Server\5.0\bin\mongod.exe" --dbpath C:\Program Files\MongoDB\Server\5.0\bin\data\db
+
+cd "C:\Users\KAISS_CUR\Desktop\ProjetApi\Upload_Radical"
+start /min cmd /C "npm install"
+start /min cmd /C "nodemon server.js"
+
+
+cd "C:\Users\KAISS_CUR\Desktop\ProjetApi\Frontend_Radical"
+start /min cmd /C "npm install --legacy-peer-deps"
+start /min cmd /C "npm start"
+
+cd "C:\Users\KAISS_CUR\Desktop\ProjetApi\Api_Radical"
+start /min cmd /C "dotnet dev-certs https"
+start /min cmd /C "dotnet run"
+
+
+goto :EOF
+:minimized

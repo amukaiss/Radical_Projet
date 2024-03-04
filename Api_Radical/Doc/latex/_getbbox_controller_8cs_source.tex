@@ -1,0 +1,25 @@
+\doxysection{Getbbox\+Controller.\+cs}
+\label{_getbbox_controller_8cs_source}\index{Controllers/GetbboxController.cs@{Controllers/GetbboxController.cs}}
+\textbf{ Aller à la documentation de ce fichier.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{keyword}{using\ }ApiTest01.Services;}
+\DoxyCodeLine{00002\ \textcolor{keyword}{using\ }Microsoft.AspNetCore.Mvc;}
+\DoxyCodeLine{00003\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }ApiTest01.Controllers}
+\DoxyCodeLine{00006\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ [Route(\textcolor{stringliteral}{"{}api/[controller]"{}})]}
+\DoxyCodeLine{00011\ \ \ \ \ [ApiController]}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }GetbboxController\ :\ Controller}
+\DoxyCodeLine{00014\ \ \ \ \ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ [HttpPost]}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{string}\ Post(\textcolor{keywordtype}{string}\ mntFile)}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ ReadFile\ r\ =\ \textcolor{keyword}{new}\ ReadFile();}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ r.Get\_bbox(mntFile);}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00026\ \ \ \ \ \}}
+\DoxyCodeLine{00027\ \}\ \ \ }
+
+\end{DoxyCode}

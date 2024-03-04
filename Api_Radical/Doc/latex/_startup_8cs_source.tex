@@ -1,0 +1,59 @@
+\doxysection{Startup.\+cs}
+\label{_startup_8cs_source}\textbf{ Aller à la documentation de ce fichier.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{keyword}{using\ }Microsoft.AspNetCore.Builder;}
+\DoxyCodeLine{00002\ \textcolor{keyword}{using\ }Microsoft.AspNetCore.Hosting;}
+\DoxyCodeLine{00003\ \textcolor{keyword}{using\ }Microsoft.AspNetCore.HttpsPolicy;}
+\DoxyCodeLine{00004\ \textcolor{keyword}{using\ }Microsoft.AspNetCore.Mvc;}
+\DoxyCodeLine{00005\ \textcolor{keyword}{using\ }Microsoft.Extensions.Configuration;}
+\DoxyCodeLine{00006\ \textcolor{keyword}{using\ }Microsoft.Extensions.DependencyInjection;}
+\DoxyCodeLine{00007\ \textcolor{keyword}{using\ }Microsoft.Extensions.Hosting;}
+\DoxyCodeLine{00008\ \textcolor{keyword}{using\ }Microsoft.Extensions.Logging;}
+\DoxyCodeLine{00009\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{00010\ \textcolor{keyword}{using\ }System.Collections.Generic;}
+\DoxyCodeLine{00011\ \textcolor{keyword}{using\ }System.Linq;}
+\DoxyCodeLine{00012\ \textcolor{keyword}{using\ }System.Threading.Tasks;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }ApiTest01}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }Startup}
+\DoxyCodeLine{00020\ \ \ \ \ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ Startup(IConfiguration\ configuration)}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ Configuration\ =\ configuration;}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ IConfiguration\ Configuration\ \{\ \textcolor{keyword}{get};\ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ method\ gets\ called\ by\ the\ runtime.\ Use\ this\ method\ to\ add\ services\ to\ the\ container.}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ ConfigureServices(IServiceCollection\ services)}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ services.AddControllers();}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//services.AddMvc().AddNewtonsoftJson();}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ method\ gets\ called\ by\ the\ runtime.\ Use\ this\ method\ to\ configure\ the\ HTTP\ request\ pipeline.}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ Configure(IApplicationBuilder\ app,\ IWebHostEnvironment\ env)}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (env.IsDevelopment())}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ app.UseDeveloperExceptionPage();}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ app.UseDefaultFiles();}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ app.UseStaticFiles();}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ app.UseHttpsRedirection();}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ app.UseRouting();}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ app.UseAuthorization();}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ app.UseEndpoints(endpoints\ =>}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ endpoints.MapControllers();}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \}}
+
+\end{DoxyCode}

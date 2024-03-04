@@ -1,0 +1,3 @@
+{"type":"FeatureCollection", "features": [
+{"type":"Feature","geometry":{"type":"LineString","coordinates":[[7.185353,43.837972],[7.184537,43.83733]]},"properties":{"Id":21372,"NIV1_14":3,"LIB1_14":"FORETS ET MILIEUX SEMI-NATURELS","NIV2_14":31,"LIB2_14":"Forets","NIV3_14":313,"LIB3_14":"Forets melangees","Area_m2":2417131.8325,"Area_ha":241.7131833,"Donnee_exo":"BD FORET IFN - Images Landsat 8","DOUTE_14":"Non"}}
+]}

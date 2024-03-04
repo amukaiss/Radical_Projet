@@ -1,0 +1,1035 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ApiTest01</name>
+    </assembly>
+    <members>
+        <member name="T:ApiTest01.Controllers.Fonction4Controller">
+            <summary>
+            The fonction4 controller.
+            </summary>
+        </member>
+        <member name="M:ApiTest01.Controllers.Fonction4Controller.Post(System.String,System.String,System.String,System.String,System.Double,System.Double,System.Double)">
+            <summary>
+            Post a list of list of list of double.
+            </summary>
+            <param name="mnt_file">The mnt file.</param>
+            <param name="rect_file">The rect file.</param>
+            <param name="front_file">The front file.</param>
+            <param name="flamme_file">The flamme file.</param>
+            <param name="humi">The humi.</param>
+            <param name="vent_force">The vent force.</param>
+            <param name="vent_direction">The vent direction.</param>
+            <returns><![CDATA[A List<List<List<Double>>>.]]></returns>
+        </member>
+        <member name="T:ApiTest01.Controllers.GetbboxController">
+            <summary>
+            The getbbox controller.
+            </summary>
+        </member>
+        <member name="M:ApiTest01.Controllers.GetbboxController.Post(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="mntFile">The mnt file.</param>
+            <returns>A string.</returns>
+        </member>
+        <member name="T:ApiTest01.Controllers.GetcenterController">
+            <summary>
+            The getcenter controller.
+            </summary>
+        </member>
+        <member name="M:ApiTest01.Controllers.GetcenterController.Post(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="mntFile">The mnt file.</param>
+            <returns>A string.</returns>
+        </member>
+        <member name="M:ApiTest01.Controllers.GetcenterController.Get">
+            <summary>
+            
+            </summary>
+            <returns>An integer.</returns>
+        </member>
+        <member name="T:ApiTest01.Controllers.QueryDatabaseController">
+            <summary>
+            The query database controller.
+            </summary>
+        </member>
+        <member name="M:ApiTest01.Controllers.QueryDatabaseController.Post">
+            <summary>
+            Post a list of bsondocuments.
+            </summary>
+            <returns><![CDATA[A List<BsonDocument>.]]></returns>
+        </member>
+        <member name="T:ApiTest01.Controllers.WeatherForecastController">
+            <summary>
+            The weather forecast controller.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Controllers.WeatherForecastController.Summaries">
+            <summary>
+            The summaries.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Controllers.WeatherForecastController._logger">
+            <summary>
+            The logger.
+            </summary>
+        </member>
+        <member name="M:ApiTest01.Controllers.WeatherForecastController.#ctor(Microsoft.Extensions.Logging.ILogger{ApiTest01.Controllers.WeatherForecastController})">
+            <summary>
+            Initializes a new instance of the <see cref="T:ApiTest01.Controllers.WeatherForecastController"/> class.
+            </summary>
+            <param name="logger">The logger.</param>
+        </member>
+        <member name="M:ApiTest01.Controllers.WeatherForecastController.Get">
+            <summary>
+            
+            </summary>
+            <returns>An integer.</returns>
+        </member>
+        <member name="T:ApiTest01.Models.Abaque">
+            <summary>
+            Classe Abaque qui fait appel à la classe Isoflux
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.Abaque.ISOFLUX">
+            <summary>
+            Gets or Sets the ISOFLUX.
+            </summary>
+        </member>
+        <member name="T:ApiTest01.Models.ISOFLUX">
+            <summary>
+            Classe des isoflux 
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.ISOFLUX.iso">
+            <summary>
+            Gets or Sets the iso.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.ISOFLUX.Ellipse">
+            <summary>
+            Gets or Sets the ellipse.
+            </summary>
+        </member>
+        <member name="T:ApiTest01.Models.Angles">
+            <summary>
+            The angles.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.Angles.tab">
+            <summary>
+            Gets or Sets the tab.
+            </summary>
+        </member>
+        <member name="M:ApiTest01.Models.Angles.#ctor(System.Double[][])">
+            <summary>
+            Initializes a new instance of the <see cref="T:ApiTest01.Models.Angles"/> class.
+            </summary>
+            <param name="tab">The tab.</param>
+        </member>
+        <member name="T:ApiTest01.Models.DynamicFront">
+            <summary>
+            The dynamic front.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.DynamicFront.type">
+            <summary>
+            Gets or Sets the type.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.DynamicFront.features">
+            <summary>
+            Gets or Sets the features.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.DynamicFront.geometry">
+            <summary>
+            Gets or Sets the geometry.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.DynamicFront.coordinates">
+            <summary>
+            Gets or Sets the coordinates.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.DynamicFront.properties">
+            <summary>
+            Gets or Sets the properties.
+            </summary>
+        </member>
+        <member name="T:ApiTest01.Models.Flamme">
+            <summary>
+            The flamme.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.Flamme.niv3">
+            <summary>
+            Gets or Sets the niv3.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.Flamme.pouvoirE">
+            <summary>
+            Gets or Sets the pouvoir E.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.Flamme.longueurF">
+            <summary>
+            Gets or Sets the longueur F.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.Flamme.tempF">
+            <summary>
+            Gets or Sets the temp F.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.Flamme.rayon">
+            <summary>
+            Gets or Sets the rayon.
+            </summary>
+        </member>
+        <member name="T:ApiTest01.Models.Front">
+            <summary>
+            The front.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.Front.X">
+            <summary>
+            Gets or Sets the X.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.Front.Y">
+            <summary>
+            Gets or Sets the Y.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.Front.Z">
+            <summary>
+            Gets or Sets the Z.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.Front.xf">
+            <summary>
+            Gets or Sets the xf.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.Front.yf">
+            <summary>
+            Gets or Sets the yf.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.Front.zf">
+            <summary>
+            Gets or Sets the zf.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.Front.oc">
+            <summary>
+            Gets or Sets the oc.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.Front.normalf">
+            <summary>
+            Gets or Sets the normalf.
+            </summary>
+        </member>
+        <member name="M:ApiTest01.Models.Front.#ctor(System.Double[][],System.Double[][],System.Double[][],System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double},System.Double[],System.Array)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ApiTest01.Models.Front"/> class.
+            </summary>
+            <param name="X">The X.</param>
+            <param name="Y">The Y.</param>
+            <param name="Z">The Z.</param>
+            <param name="xf">The xf.</param>
+            <param name="yf">The yf.</param>
+            <param name="zf">The zf.</param>
+            <param name="normalf">The normalf.</param>
+        </member>
+        <member name="M:ApiTest01.Models.Front.#ctor(System.Array)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ApiTest01.Models.Front"/> class.
+            </summary>
+            <param name="normalf">The normalf.</param>
+        </member>
+        <member name="T:ApiTest01.Models.FrontJson">
+            <summary>
+            The front json.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.FrontJson.type">
+            <summary>
+            Gets or Sets the type.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.FrontJson.features">
+            <summary>
+            Gets or Sets the features.
+            </summary>
+        </member>
+        <member name="T:ApiTest01.Models.Feature">
+            <summary>
+            The feature.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.Feature.type">
+            <summary>
+            Gets or Sets the type.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.Feature.geometry">
+            <summary>
+            Gets or Sets the geometry.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.Feature.properties">
+            <summary>
+            Gets or Sets the properties.
+            </summary>
+        </member>
+        <member name="T:ApiTest01.Models.Geometry">
+            <summary>
+            The geometry.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.Geometry.type">
+            <summary>
+            Gets or Sets the type.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.Geometry.coordinates">
+            <summary>
+            Gets or Sets the coordinates.
+            </summary>
+        </member>
+        <member name="T:ApiTest01.Models.Properties">
+            <summary>
+            The properties.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.Properties.NIV3_14">
+            <summary>
+            Gets or Sets the niv3 14.
+            </summary>
+        </member>
+        <member name="T:ApiTest01.Models.LineFront">
+            <summary>
+            The line front.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.LineFront.type">
+            <summary>
+            Gets or Sets the type.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.LineFront.geometry">
+            <summary>
+            Gets or Sets the geometry.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.LineFront.properties">
+            <summary>
+            Gets or Sets the properties.
+            </summary>
+        </member>
+        <member name="T:ApiTest01.Models.Geometry3">
+            <summary>
+            The geometry3.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.Geometry3.type">
+            <summary>
+            Gets or Sets the type.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.Geometry3.coordinates">
+            <summary>
+            Gets or Sets the coordinates.
+            </summary>
+        </member>
+        <member name="T:ApiTest01.Models.Properties3">
+            <summary>
+            The properties3.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.Properties3.NIV3_14">
+            <summary>
+            Gets or Sets the niv3 14.
+            </summary>
+        </member>
+        <member name="T:ApiTest01.Models.MultiFront">
+            <summary>
+            The multi front.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.MultiFront.type">
+            <summary>
+            Gets or Sets the type.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.MultiFront.geometry">
+            <summary>
+            Gets or Sets the geometry.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.MultiFront.properties">
+            <summary>
+            Gets or Sets the properties.
+            </summary>
+        </member>
+        <member name="T:ApiTest01.Models.Geometry2">
+            <summary>
+            The geometry2.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.Geometry2.type">
+            <summary>
+            Gets or Sets the type.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.Geometry2.coordinates">
+            <summary>
+            Gets or Sets the coordinates.
+            </summary>
+        </member>
+        <member name="T:ApiTest01.Models.Properties2">
+            <summary>
+            The properties2.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.Properties2.NIV3_14">
+            <summary>
+            Gets or Sets the niv3 14.
+            </summary>
+        </member>
+        <member name="T:ApiTest01.Models.Param">
+            <summary>
+            The param.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.np_azimut">
+            <summary>
+            The np azimut.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.np_hauteur">
+            <summary>
+            The np hauteur.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.sigma">
+            <summary>
+            The sigma.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.gravite">
+            <summary>
+            The gravite.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.cpeau">
+            <summary>
+            The cpeau.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.quir">
+            <summary>
+            The quir.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.kappafl">
+            <summary>
+            The kappafl.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.alpha_char">
+            <summary>
+            The alpha char.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.Pr">
+            <summary>
+            The pr.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.Pr13">
+            <summary>
+            The pr13.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.grand_sphere">
+            <summary>
+            The grand sphere.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.grand_rayon_ray">
+            <summary>
+            The grand rayon ray.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.facteur_rad">
+            <summary>
+            The facteur rad.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.facteur_conv">
+            <summary>
+            The facteur conv.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.niso">
+            <summary>
+            The niso.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.nmax">
+            <summary>
+            The nmax.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.isomax">
+            <summary>
+            The isomax.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.isomin">
+            <summary>
+            The isomin.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.tolerance">
+            <summary>
+            The tolerance.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.n_points_min">
+            <summary>
+            The n points min.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.n_individu">
+            <summary>
+            The n individu.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.n_generation">
+            <summary>
+            The n generation.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.rate_selection">
+            <summary>
+            The rate selection.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.rate_mutation">
+            <summary>
+            The rate mutation.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.amplitud_mutation">
+            <summary>
+            The amplitud mutation.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.rate_production">
+            <summary>
+            The rate production.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.nzi">
+            <summary>
+            The nzi.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.NI">
+            <summary>
+            The ni.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.Ratio_x">
+            <summary>
+            The ratiox.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.XZ">
+            <summary>
+            The xz.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.nzj">
+            <summary>
+            The nzj.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.NJ">
+            <summary>
+            The nj.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.Ratio_y">
+            <summary>
+            The ratioy.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.YZ">
+            <summary>
+            The yz.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.nfi">
+            <summary>
+            The nfi.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.nfj">
+            <summary>
+            The nfj.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.nq">
+            <summary>
+            The nq.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.ii_quanta">
+            <summary>
+            The ii quanta.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.jj_quanta">
+            <summary>
+            The ii quanta.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.ind">
+            <summary>
+            The ind.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.coeff_att">
+            <summary>
+            The coeff att.
+            </summary>
+        </member>
+        <member name="F:ApiTest01.Models.Param.CMN">
+            <summary>
+            The cmn.
+            </summary>
+        </member>
+        <member name="T:ApiTest01.Models.Test">
+            <summary>
+            The test.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.Test.list">
+            <summary>
+            Gets or Sets the list.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.Test.lList">
+            <summary>
+            Gets or Sets the l list.
+            </summary>
+        </member>
+        <member name="M:ApiTest01.Models.Test.#ctor(System.Double[][])">
+            <summary>
+            Initializes a new instance of the <see cref="T:ApiTest01.Models.Test"/> class.
+            </summary>
+            <param name="list">The list.</param>
+        </member>
+        <member name="T:ApiTest01.Models.TodoItem">
+            <summary>
+            The todo item.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.TodoItem.Id">
+            <summary>
+            Gets or Sets the id.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.TodoItem.Name">
+            <summary>
+            Gets or Sets the name.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.TodoItem.IsComplete">
+            <summary>
+            Gets or Sets a value indicating whether is complete.
+            </summary>
+        </member>
+        <member name="T:ApiTest01.Models.voisinageList">
+            <summary>
+            The voisinage list.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.voisinageList.xlist">
+            <summary>
+            Gets or Sets the xlist.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.voisinageList.ylist">
+            <summary>
+            Gets or Sets the ylist.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.voisinageList.zlist">
+            <summary>
+            Gets or Sets the zlist.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Models.voisinageList.nlist">
+            <summary>
+            Gets or Sets the nlist.
+            </summary>
+        </member>
+        <member name="M:ApiTest01.Models.voisinageList.#ctor(System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Initializes a new instance of the <see cref="T:ApiTest01.Models.voisinageList"/> class.
+            </summary>
+            <param name="xlist">The xlist.</param>
+            <param name="ylist">The ylist.</param>
+            <param name="zlist">The zlist.</param>
+            <param name="nlist">The nlist.</param>
+        </member>
+        <member name="T:ApiTest01.Program">
+            <summary>
+            The program.
+            </summary>
+        </member>
+        <member name="M:ApiTest01.Program.Main(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args">The args.</param>
+        </member>
+        <member name="M:ApiTest01.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            Creates the host builder.
+            </summary>
+            <param name="args">The args.</param>
+            <returns>An IHostBuilder.</returns>
+        </member>
+        <member name="T:ApiTest01.Services.Abaque">
+            <summary>
+            The abaque.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Services.Abaque._id">
+            <summary>
+            Gets or Sets the id.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Services.Abaque.name">
+            <summary>
+            Gets or Sets the name.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Services.Abaque.Longueur_de_flamme">
+            <summary>
+            Gets or Sets the longueurdeflamme.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Services.Abaque.Rayon_de_flamme">
+            <summary>
+            Gets or Sets the rayondeflamme.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Services.Abaque.Inclinaison_de_flamme">
+            <summary>
+            Gets or Sets the inclinaisondeflamme.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Services.Abaque.Humidite">
+            <summary>
+            Gets or Sets the humidite.
+            </summary>
+        </member>
+        <member name="P:ApiTest01.Services.Abaque.ISOFLUX">
+            <summary>
+            Gets or Sets the ISOFLUX.
+            </summary>
+        </member>
+        <member name="T:ApiTest01.Services.Database">
+            <summary>
+            The database.
+            </summary>
+        </member>
+        <member name="M:ApiTest01.Services.Database.chercher(System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Cherchers a list of bsondocuments.
+            </summary>
+            <param name="lon">The lon.</param>
+            <param name="ra">The ra.</param>
+            <param name="inc">The inc.</param>
+            <param name="humi">The humi.</param>
+            <param name="temp">The temp.</param>
+            <returns><![CDATA[A List<BsonDocument>.]]></returns>
+        </member>
+        <member name="T:ApiTest01.Services.Fonction1">
+            <summary>
+            Classe contient les fonctions : Maillage_Domaine_Carre et Elevation_Domaine
+            </summary>
+        </member>
+        <member name="M:ApiTest01.Services.Fonction1.Maillage_Domaine_Carre(System.String,System.Double[],System.Double[],System.Double)">
+            <summary>
+            Cette fonction sert à maillaer le domaine cible.
+            </summary>
+            <param name="rectangle">nom du rectangle limitant le domaine d'étude</param>
+            <param name="xmnt"> Les x issus de MNT.</param>
+            <param name="ymnt"> Les y issus de MNT. </param>
+            <param name="pas">Le pas de résolution de MNT</param>
+            <returns> Deux tableaux X et Y. du maillage</returns>
+        </member>
+        <member name="M:ApiTest01.Services.Fonction1.Elevation_Domaine(System.Double[0:,0:],System.Double[0:,0:],System.Double[],System.Double[],System.Double[0:,0:],System.Double)">
+            <summary>
+            Elevations des points du maillage.
+            </summary>
+            <param name="X"> Le tableau X retourné par la fonction Maillage_Domaine_Carre.</param>
+            <param name="Y"> Le tableau Y retourné par la fonction Maillage_Domaine_Carre.</param>
+            <param name="xmnt"> Les x de MNT. </param>
+            <param name="ymnt"> Les y de MNT.</param>
+            <param name="zmnt"> Les z de MNT.</param>
+            <param name="cellsize"> Le pas de résolution de MNT.</param>
+            <returns>Tableau Z même taille que X et Y.</returns>
+        </member>
+        <member name="T:ApiTest01.Services.Fonction2">
+            <summary>
+            The fonction2.
+            </summary>
+        </member>
+        <member name="M:ApiTest01.Services.Fonction2.Maillage_Front(System.String,System.Double[0:,0:],System.Double[0:,0:],System.Double[0:,0:],System.Double[],System.Double[],System.Double[0:,0:],System.Double,System.Double)">
+            <summary>
+            Maillages the front.
+            </summary>
+            
+            <param name="path">The path.</param>
+            <param name="X">The X.</param>
+            <param name="Y">The Y.</param>
+            <param name="Z">The Z.</param>
+            <param name="xmnt">The xmnt.</param>
+            <param name="ymnt">The ymnt.</param>
+            <param name="zmnt">The zmnt.</param>
+            <param name="cellsize">The cellsize.</param>
+            <param name="diametre">The diametre.</param>
+            <returns><![CDATA[A (List<double>, List<double>, List<double>, List<integer>, float[,], integer[,], integer[,]).]]></returns>
+        </member>
+        <member name="M:ApiTest01.Services.Fonction2.jsonFront(System.String)">
+            <summary>
+            Lecture du front de feu sous json
+            </summary>
+            <param name="path">Arborescence du fichier json. </param>
+            <returns>Trois listes : une des entiers (NIV3) et deux des réels (x et y).</returns>
+        </member>
+        <member name="M:ApiTest01.Services.Fonction2.Elevation_Front(System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double},System.Double[],System.Double[],System.Double[0:,0:],System.Double)">
+            <summary>
+            Calcul de l'elevation (Z) de chaque site du front du feu.
+            </summary>
+            
+            <param name="xf"> Coordonnée x du site en feu.</param>
+            <param name="yf"> Coordonnée y du site en feu.</param>
+            <param name="xmnt">Tableau des X du modèle numérique de terrain.</param>
+            <param name="ymnt">Tableau des Y du modèle numérique de terrain.</param>
+            <param name="zmnt">Tableau des Z du modèle numérique de terrain.</param>
+            <param name="cellsize"> Pas de résolution de MNT. </param>
+            <returns> Premier tableau contenant les z de tous les sites en feu. Le second est tableau de deux dimensions, contenant les normales des sites en feu.</returns>
+        </member>
+        <member name="M:ApiTest01.Services.Fonction2.LectureJsonOrder(System.String)">
+            <summary>
+            Lecture du fichier json avec format "Order"
+            </summary>
+            <param name="path">Arborescence du fichier json.</param>
+            <returns>Trois listes : une des entiers (NIV3) et deux des réels (x et y).</returns>
+        </member>
+        <member name="M:ApiTest01.Services.Fonction2.frontJson2(System.String)">
+            <summary>
+            fronts the json2.
+            </summary>
+            <param name="path">Arborescence du fichier json.</param>
+            <returns><![CDATA[A List<DynamicFront>.]]></returns>
+        </member>
+        <member name="M:ApiTest01.Services.Fonction2.Multifront(System.String)">
+            <summary>
+            Lecture fichier json contenant multilignes : lorsque ligne du front contient plusieurs types d'OCSOL.
+            </summary>
+            <param name="path">Arborescence du fichier json.</param>
+            <returns>Trois listes : une des entiers (NIV3) et deux des réels (x et y).</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:ApiTest01.Services.Fonction2.Linefront(System.String)" -->
+        <member name="T:ApiTest01.Services.Fonction3">
+            <summary>
+            Fonction : classe contient les fonctions suivantes :
+            Angle_direction_ellipse, Voisinage_ifeu, Voisinage, Calcul_isoflux,
+            Chercher2
+            </summary>
+        </member>
+        <member name="M:ApiTest01.Services.Fonction3.Angle_direction_ellipse(System.Double,System.Double,System.Double,System.Numerics.Vector3)">
+            <summary>
+            Cette fonction calcule l'angle, la direction d'inclinaison et la hauteur de flamme.
+            </summary>
+            <param name="lfl">Longueur de flamme.</param>
+            <param name="vent_force">Force du vent.</param>
+            <param name="vent_direction">Direction du vent.</param>
+            <param name="normal">Normal du terrain.</param>
+            <returns>Returne un tableau contenant: angle, direction d'inclinaison et hauteur.</returns>
+        </member>
+        <member name="M:ApiTest01.Services.Fonction3.Voisinage_ifeu(System.Int32,System.Double,System.Double,System.Int32,System.Int32,System.Int32[0:,0:],System.Int32[0:,0:],System.Double,System.Double[0:,0:],System.Double,System.Double[0:,0:],System.Double[0:,0:])">
+            <summary>
+            Voisinage_ifeu calcul les noeuds du maillage du terrain, voisins d'un site en feu "ifeu"
+            recevant le flux de chaleur dans un rayon assez grand.
+            </summary>
+            <param name="ifeu">numéro du site en feu.</param>
+            <param name="xf">Coordonnée x du site en feu.</param>
+            <param name="yf">coordonnée y du site en feu.</param>
+            <param name="nx">nombre total de noeuds du maillage selon x.</param>
+            <param name="ny">nombre total de noeuds du maillage selon y.</param>
+            <param name="dansFeu">Référence 1 si le noeud est en feu et 0 sinon</param>
+            <param name="numMesh">Numéro du noeud dans le maillage.</param>
+            <param name="rayon">Rayon du site en feu.</param>
+            <param name="prad">Tableau contenant la puissance radiative de points du maillages (points receptifs)</param>
+            <param name="pemissif">Pouvoir emissif du site en feu.</param>
+            <param name="X">Tableau contenant les x du maillage.</param>
+            <param name="Y">Tableau contenant les y du maillage.</param>
+            <returns>returne un tableau des entiers : les numéros du noeuds voisins</returns>
+        </member>
+        <member name="M:ApiTest01.Services.Fonction3.Calcul_isoflux(System.Double,System.Double,System.Double,System.Int32,System.Int32,System.Double[0:,0:],System.Double[0:,0:],System.Double,System.Double[0:,0:],System.Double,System.Int32[],System.Double[0:,0:])">
+            <summary>
+            Calcul_iso_fluxe : calcul les iso-flux à chaque noeud du maillage.
+            </summary>
+            <param name="xf"> Coordonnée x du site en feu.</param>
+            <param name="yf"> Coordonnée y du site en feu.</param>
+            <param name="pemissif">Pouvoir emissif du site en feu.</param>
+            <param name="ny">Nombre total de noeuds selon y.</param>
+            <param name="nx">Nombre total de noeuds selon x.</param>
+            <param name="X">Tableau contient tous les x du maillage.</param>
+            <param name="Y">Tableau contient tous les y du maillage.</param>
+            <param name="teta_flamme"> Angle d'inclainaison de flamme.</param>
+            <param name="bdata">Donnees extraites de la base de données pour un site en feu.</param>
+            <param name="diametre">Diametre du site en feu.</param>
+            <param name="voisins"> Voisins du site en feu.</param>
+            <param name="prad"> Tableau contenant la puissance radiative de tous les points du maillage.</param>
+            <returns>Retourne un tableau des iso-flux.</returns>
+        </member>
+        <member name="M:ApiTest01.Services.Fonction3.Chercher2(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Cette fonction d'extraire les ellipses des iso-flux normalisés dans la base de donnéees "MongoDB".
+            </summary>
+            <param name="lon">Longueur de flamme.</param>
+            <param name="ra">Rayon de flamme.</param>
+            <param name="inc">Inclinaison de flamme.</param>
+            <param name="humi">Humidité du milieu.</param>
+            <returns> Returne des ellipses des iso-flux.</returns>
+        </member>
+        <member name="T:ApiTest01.Services.ReadFile">
+            <summary>
+            The read file.
+            </summary>
+        </member>
+        <member name="M:ApiTest01.Services.ReadFile.Calcul_centre(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="mntFile">The mnt file.</param>
+            <returns>A string.</returns>
+        </member>
+        <member name="M:ApiTest01.Services.ReadFile.Get_bbox(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="mntFile">The mnt file.</param>
+            <returns>A string.</returns>
+        </member>
+        <member name="M:ApiTest01.Services.ReadFile.lecture_grosfichier(System.String,System.String)">
+            <summary>
+            Lectures the grosfichier.
+            </summary>
+            <param name="mntFile">The mnt file.</param>
+            <param name="path">The path.</param>
+            <returns>A (double[], double[], Double[,], double).</returns>
+        </member>
+        <member name="M:ApiTest01.Services.ReadFile.jsonRectangle(System.String)">
+            <summary>
+            jsons the rectangle.
+            </summary>
+            <param name="path">The path.</param>
+            <returns>An array of double.</returns>
+        </member>
+        <member name="M:ApiTest01.Services.ReadFile.WGS84ToLambert93(System.Double,System.Double)">
+            <summary>
+            WGS the s84 to lambert93.
+            </summary>
+            <param name="longitude">The longitude.</param>
+            <param name="latitude">The latitude.</param>
+            <returns>An array of double.</returns>
+        </member>
+        <member name="M:ApiTest01.Services.ReadFile.Lambert93ToWGS84(System.Double,System.Double)">
+            <summary>
+            Lambert93 the to WG s84.
+            </summary>
+            <param name="x">The X.</param>
+            <param name="y">The Y.</param>
+            <returns>An array of double.</returns>
+        </member>
+        <member name="M:ApiTest01.Services.ReadFile.latitudeFromLatitudeISO(System.Double)">
+            <summary>
+            latitudes the from latitude ISO.
+            </summary>
+            <param name="latISo">The lat IS.</param>
+            <returns>A double.</returns>
+        </member>
+        <member name="M:ApiTest01.Services.ReadFile.ConvertToJaggedArray``1(``0[0:,0:])">
+            <summary>
+            Convert to jagged array.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="multiArray">The multi array.</param>
+            <returns>An array of TS.</returns>
+        </member>
+        <member name="M:ApiTest01.Services.ReadFile.jsonFlamme(System.String)">
+            <summary>
+            jsons the flamme.
+            </summary>
+            <param name="path">The path.</param>
+            <returns>An array of double.</returns>
+        </member>
+        <member name="M:ApiTest01.Services.ReadFile.readFlamme(System.String)">
+            <summary>
+            reads the flamme.
+            </summary>
+            <param name="path">The path.</param>
+            <returns>An array of double.</returns>
+        </member>
+        <member name="T:ApiTest01.Startup">
+            <summary>
+            The startup.
+            </summary>
+        </member>
+        <member name="M:ApiTest01.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ApiTest01.Startup"/> class.
+            </summary>
+            <param name="configuration">The configuration.</param>
+        </member>
+        <member name="P:ApiTest01.Startup.Configuration">
+            <summary>
+            Gets the configuration.
+            </summary>
+        </member>
+        <member name="M:ApiTest01.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configures the services.
+            </summary>
+            <param name="services">The services.</param>
+            // This method gets called by the runtime. Use this method to add services to the container.
+        </member>
+        <member name="M:ApiTest01.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            
+            </summary>
+            <param name="app">The app.</param>
+            <param name="env">The env.</param>
+        </member>
+    </members>
+</doc>

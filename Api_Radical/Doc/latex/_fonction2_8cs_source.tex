@@ -1,0 +1,335 @@
+\doxysection{Fonction2.\+cs}
+\label{_fonction2_8cs_source}\index{Services/Fonction2.cs@{Services/Fonction2.cs}}
+\textbf{ Aller à la documentation de ce fichier.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{00002\ \textcolor{keyword}{using\ }System.Collections.Generic;}
+\DoxyCodeLine{00003\ \textcolor{keyword}{using\ }System.IO;}
+\DoxyCodeLine{00004\ \textcolor{keyword}{using\ }System.Linq;}
+\DoxyCodeLine{00005\ \textcolor{keyword}{using\ }Newtonsoft.Json;}
+\DoxyCodeLine{00006\ \textcolor{keyword}{using\ }ApiTest01.Models;}
+\DoxyCodeLine{00007\ \textcolor{keyword}{using\ }System.Numerics;}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }ApiTest01.Services}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }Fonction2}
+\DoxyCodeLine{00015\ \ \ \ \ \{}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ (List<double>,\ List<double>,\ List<double>,\ List<int>,\ \textcolor{keywordtype}{float}[,],\ \textcolor{keywordtype}{int}[,],\ \textcolor{keywordtype}{int}[,])\ Maillage\_Front(\textcolor{keywordtype}{string}\ path,}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}[,]\ X,\ \textcolor{keywordtype}{double}[,]\ Y,\ \textcolor{keywordtype}{double}[,]\ Z,\ \textcolor{keywordtype}{double}[]\ xmnt,\ \textcolor{keywordtype}{double}[]\ ymnt,\ \textcolor{keywordtype}{double}[,]\ zmnt,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ cellsize,\ \textcolor{keywordtype}{double}\ diametre)}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ (List<int>\ lp,\ List<double>\ lx,\ List<double>\ ly)\ =\ LectureJsonOrder(path);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ nf\ =\ lx.Count;}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ rayon\ =\ diametre\ /\ 2;}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ nx\ =\ X.GetLength(1);\ \textcolor{keywordtype}{int}\ ny\ =\ X.GetLength(0);}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ List<double>\ xf\ =\ \textcolor{keyword}{new}\ List<double>();}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ List<double>\ yf\ =\ \textcolor{keyword}{new}\ List<double>();}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ List<double>\ zf\ =\ \textcolor{keyword}{new}\ List<double>();}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ List<int>\ frontfeu\ =\ \textcolor{keyword}{new}\ List<int>();}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ List<int>\ oc\ =\ \textcolor{keyword}{new}\ List<int>();}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}[,]\ dansFeu\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{int}[ny,\ nx];}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}[,]\ numMesh\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{int}[ny,\ nx];}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ ny;\ j++)}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ nx;\ i++)}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dansFeu[j,\ i]\ =\ 0;}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numMesh[j,\ i]\ =\ i\ +\ j\ *\ nx;}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ pas\_mesh\ =\ X[0,\ 1]\ -\/\ X[0,\ 0];}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ x0\ =\ lx[0];\ \textcolor{keywordtype}{double}\ y0\ =\ ly[0];}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(String.Format(\textcolor{stringliteral}{"{}\ Pas\ de\ maillage\ \{0:F2\}\ \ \ "{}},\ pas\_mesh));}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ l\ =\ 0;\ l\ <\ nf\ -\/\ 1;\ l++)}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ dis\ =\ Math.Sqrt(Math.Pow(x0\ -\/\ lx[l\ +\ 1],\ 2)\ +}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Math.Pow(y0\ -\/\ ly[l\ +\ 1],\ 2));}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ nd\ =\ (int)Math.Round(dis\ /\ (2\ *\ rayon));}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (nd\ >\ 1)}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ xpas\ =\ (lx[l\ +\ 1]\ -\/\ x0)\ /\ (nd\ -\/\ 1);}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ ypas\ =\ (ly[l\ +\ 1]\ -\/\ y0)\ /\ (nd\ -\/\ 1);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ k\ =\ 0;\ k\ <\ nd;\ k++)}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ xk\ =\ x0\ +\ xpas;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ yk\ =\ y0\ +\ ypas;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ xf.Add(xk);\ yf.Add(yk);}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ix\ =\ (int)Math.Floor((xk\ -\/\ X[0,\ 0])\ /\ pas\_mesh);}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ jy\ =\ (int)Math.Floor((yk\ -\/\ Y[0,\ 0])\ /\ pas\_mesh);}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ alpha\ =\ (xk\ -\/\ X[jy,\ ix])\ /\ ((X[jy,\ ix\ +\ 1]\ -\/\ X[jy,\ ix]));}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ beta\ =\ (yk\ -\/\ Y[jy,\ ix])\ /\ ((Y[jy\ +\ 1,\ ix]\ -\/\ Y[jy,\ ix]));}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ zk\ =\ (1\ -\/\ alpha)\ *\ ((1\ -\/\ beta)\ *\ Z[jy,\ ix]\ +\ beta\ *\ Z[jy\ +\ 1,\ ix])\ +}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ alpha\ *\ ((1\ -\/\ beta)\ *\ Z[jy,\ ix\ +\ 1]\ +\ beta\ *\ Z[jy\ +\ 1,\ ix\ +\ 1]);}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ zf.Add(zk);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ oc.Add(lp[l]);}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x0\ =\ xk;\ y0\ =\ yk;}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}[,]\ normalf\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{float}[xf.Count(),\ 3];}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ Vector3\ u\ =\ \textcolor{keyword}{new}\ Vector3();}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ Vector3\ v\ =\ \textcolor{keyword}{new}\ Vector3();}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ Vector3\ w\ =\ \textcolor{keyword}{new}\ Vector3();}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ k\ =\ 0;\ k\ <\ xf.Count();\ k++)}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ix\ =\ (int)Math.Floor((xf[k]\ -\/\ xmnt[0])\ /\ cellsize);}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ jy\ =\ (int)Math.Floor((yf[k]\ -\/\ ymnt[0])\ /\ cellsize);}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ u.X\ =\ (float)(xmnt[ix\ +\ 1]\ -\/\ xmnt[ix]);\ u.Y\ =\ 0;\ u.Z\ =\ (float)(zmnt[jy,\ ix\ +\ 1]\ -\/\ zmnt[jy,\ ix]);}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ u\ =\ Vector3.Normalize(u);}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v.X\ =\ 0;\ v.Y\ =\ (float)(ymnt[jy\ +\ 1]\ -\/\ ymnt[jy]);\ v.Z\ =\ (float)(zmnt[jy\ +\ 1,\ ix]\ -\/\ zmnt[jy,\ ix]);}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v\ =\ Vector3.Normalize(v);}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ w\ =\ Vector3.Cross(u,\ v);}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ normalf[k,\ 0]\ =\ w.X;\ normalf[k,\ 1]\ =\ w.Y;\ normalf[k,\ 2]\ =\ w.Z;}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (xf,\ yf,\ zf,\ oc,\ normalf,\ dansFeu,\ numMesh);}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ (List<int>,\ List<double>,\ List<double>)\ jsonFront(\textcolor{keywordtype}{string}\ path)}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ ReadFile\ rf\ =\ \textcolor{keyword}{new}\ ReadFile();}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (StreamReader\ r\ =\ \textcolor{keyword}{new}\ StreamReader(path))}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ json\ =\ r.ReadToEnd();}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ myJsonObject\ =\ JsonConvert.DeserializeObject<FrontJson>(json);}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ nb\ =\ myJsonObject.features.Length;}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ List<int>\ lp\ =\ \textcolor{keyword}{new}\ List<int>();}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ List<double>\ lx\ =\ \textcolor{keyword}{new}\ List<double>();}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ List<double>\ ly\ =\ \textcolor{keyword}{new}\ List<double>();}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ t\ =\ 0;}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}[]\ tab\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{double}[2];}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ k\ =\ 0;\ k\ <\ nb;\ k++)}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ t\ =\ myJsonObject.features[k].geometry.coordinates.Length;}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ (t\ /\ 2)\ -\/\ 1;\ i++)}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tab\ =\ rf.WGS84ToLambert93(myJsonObject.features[k].geometry.coordinates[i,\ 0],}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myJsonObject.features[k].geometry.coordinates[i,\ 1]);}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lx.Add(tab[0]);}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ly.Add(tab[1]);}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lp.Add(myJsonObject.features[k].properties.NIV3\_14);}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tab\ =\ rf.WGS84ToLambert93(myJsonObject.features[nb\ -\/\ 1].geometry.coordinates[(t\ /\ 2)\ -\/\ 1,\ 0],}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myJsonObject.features[nb\ -\/\ 1].geometry.coordinates[(t\ /\ 2)\ -\/\ 1,\ 1]);}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lx.Add(tab[0]);}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ly.Add(tab[1]);}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lp.Add(myJsonObject.features[nb\ -\/\ 1].properties.NIV3\_14);}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (lp,\ lx,\ ly);}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ (\textcolor{keywordtype}{double}[],\ \textcolor{keywordtype}{float}[,])\ Elevation\_Front(List<double>\ xf,\ List<double>\ yf,\ \textcolor{keywordtype}{double}[]\ xmnt,\ \textcolor{keywordtype}{double}[]\ ymnt,\ \textcolor{keywordtype}{double}[,]\ zmnt,\ \textcolor{keywordtype}{double}\ cellsize)}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}[]\ zf\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{double}[xf.Count()];}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}[,]\ normalf\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{float}[xf.Count(),\ 3];}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ Vector3\ u\ =\ \textcolor{keyword}{new}\ Vector3();}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ Vector3\ v\ =\ \textcolor{keyword}{new}\ Vector3();}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ Vector3\ w\ =\ \textcolor{keyword}{new}\ Vector3();}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ k\ =\ 0;\ k\ <\ xf.Count();\ k++)}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ix\ =\ (int)Math.Floor((xf[k]\ -\/\ xmnt[0])\ /\ cellsize);}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ jy\ =\ (int)Math.Floor((yf[k]\ -\/\ ymnt[0])\ /\ cellsize);}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ a\ =\ (xf[k]\ -\/\ xmnt[ix])\ /\ cellsize;}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ b\ =\ (yf[k]\ -\/\ ymnt[jy])\ /\ cellsize;}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ zf[k]\ =\ (1\ -\/\ a)\ *\ ((1\ -\/\ b)\ *\ zmnt[jy,\ ix]\ +\ b\ *\ zmnt[jy\ +\ 1,\ ix])\ +\ a\ *\ ((1\ -\/\ b)\ *\ zmnt[jy,\ ix\ +\ 1]\ +\ b\ *\ zmnt[jy\ +\ 1,\ ix\ +\ 1]);}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ u.X\ =\ (float)(xmnt[ix\ +\ 1]\ -\/\ xmnt[ix]);\ u.Y\ =\ 0;\ u.Z\ =\ (float)(zmnt[jy,\ ix\ +\ 1]\ -\/\ zmnt[jy,\ ix]);}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ u\ =\ Vector3.Normalize(u);}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v.X\ =\ 0;\ v.Y\ =\ (float)(ymnt[jy\ +\ 1]\ -\/\ ymnt[jy]);\ v.Z\ =\ (float)(zmnt[jy\ +\ 1,\ ix]\ -\/\ zmnt[jy,\ ix]);}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v\ =\ Vector3.Normalize(v);}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ w\ =\ Vector3.Cross(u,\ v);}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ normalf[k,\ 0]\ =\ w.X;\ normalf[k,\ 1]\ =\ w.Y;\ normalf[k,\ 2]\ =\ w.Z;}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (zf,\ normalf);}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ (List<int>,\ List<double>,\ List<double>)\ LectureJsonOrder(\textcolor{keywordtype}{string}\ path)}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ ReadFile\ rf\ =\ \textcolor{keyword}{new}\ ReadFile();}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ List<DynamicFront>\ li\ =\ frontJson2(path);}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ List<double>\ lx\ =\ \textcolor{keyword}{new}\ List<double>();}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ List<double>\ ly\ =\ \textcolor{keyword}{new}\ List<double>();}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ List<double>\ lx1\ =\ \textcolor{keyword}{new}\ List<double>();}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ List<double>\ ly1\ =\ \textcolor{keyword}{new}\ List<double>();}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ List<double>\ lx2\ =\ \textcolor{keyword}{new}\ List<double>();}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ List<double>\ ly2\ =\ \textcolor{keyword}{new}\ List<double>();}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ List<int>\ lp\ =\ \textcolor{keyword}{new}\ List<int>();}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ li.Count();\ i++)}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ chaine\ =\ li[i].coordinates;}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (li[i].type\ ==\ \textcolor{stringliteral}{"{}MultiLineString"{}})}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (List<int>\ oc,\ List<double>\ xf1,\ List<double>\ yf1)\ =\ Multifront(chaine);}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ o\ =\ 0;\ o\ <\ xf1.Count();\ o++)}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lx1.Add(xf1[o]);}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ly1.Add(yf1[o]);}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (List<int>\ oc,\ List<double>\ xf1,\ List<double>\ yf1,\ List<double>\ xf2,\ List<double>\ yf2)\ =\ Linefront(chaine);}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ o\ =\ 0;\ o\ <\ xf1.Count();\ o++)}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lx1.Add(xf1[o]);}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ly1.Add(yf1[o]);}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lx2.Add(xf2[o]);}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ly2.Add(yf2[o]);}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lp.Add(oc[o]);}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ lx1.Count()\ -\/\ 1;\ i++)}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ X\ =\ lx2[i];\ \textcolor{keywordtype}{double}\ Y\ =\ ly2[i];\ \textcolor{keywordtype}{int}\ fait\ =\ 0;\ \textcolor{keywordtype}{int}\ j\ =\ i;}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (fait\ <\ 1)}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ j\ =\ j\ +\ 1;\ fait\ =\ 0;}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (X\ ==\ lx1[j]\ \&\&\ Y\ ==\ ly1[j])}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ x1\ =\ lx1[i\ +\ 1];\ \textcolor{keywordtype}{double}\ y1\ =\ ly1[i\ +\ 1];\ \textcolor{keywordtype}{double}\ x2\ =\ lx2[i\ +\ 1];\ \textcolor{keywordtype}{double}\ y2\ =\ ly2[i\ +\ 1];}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ip\ =\ lp[i\ +\ 1];}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fait\ =\ 1;}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lx1[i\ +\ 1]\ =\ lx1[j];\ ly1[i\ +\ 1]\ =\ ly1[j];\ lx2[i\ +\ 1]\ =\ lx2[j];\ ly2[i\ +\ 1]\ =\ ly2[j];\ lp[i\ +\ 1]\ =\ lp[j];}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lx1[j]\ =\ x1;\ ly1[j]\ =\ y1;\ lx2[j]\ =\ x2;\ ly2[j]\ =\ y2;\ lp[j]\ =\ ip;}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ X\ =\ lx2[j];\ Y\ =\ ly2[j];}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}[]\ tab\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{double}[2];}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ lx1.Count();\ i++)}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tab\ =\ rf.WGS84ToLambert93(lx1[i],\ ly1[i]);}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lx.Add(tab[0]);}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ly.Add(tab[1]);}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ t\ =\ lx2.Count()\ -\/\ 1;}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ tab\ =\ rf.WGS84ToLambert93(lx2[t],\ ly2[t]);}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ lx.Add(tab[0]);}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ ly.Add(tab[1]);}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (lp,\ lx,\ ly);}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ List<DynamicFront>\ frontJson2(\textcolor{keywordtype}{string}\ path)}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (StreamReader\ r\ =\ \textcolor{keyword}{new}\ StreamReader(path))}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ json\ =\ r.ReadToEnd();}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dynamic\ myJsonObject\ =\ JsonConvert.DeserializeObject(json);}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ List<DynamicFront>\ lstGeoLocation\ =\ \textcolor{keyword}{new}\ List<DynamicFront>();}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ List<int>\ lp\ =\ \textcolor{keyword}{new}\ List<int>();}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ List<double>\ lx\ =\ \textcolor{keyword}{new}\ List<double>();}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ List<double>\ ly\ =\ \textcolor{keyword}{new}\ List<double>();}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ item\ \textcolor{keywordflow}{in}\ myJsonObject.features)}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lstGeoLocation.Add(\textcolor{keyword}{new}\ DynamicFront()}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ item.geometry.type,}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ coordinates\ =\ item.ToString()}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (lstGeoLocation);}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ (List<int>,\ List<double>,\ List<double>)\ Multifront(\textcolor{keywordtype}{string}\ path)}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ ReadFile\ rf\ =\ \textcolor{keyword}{new}\ ReadFile();}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ dynamic\ myJsonObject\ =\ JsonConvert.DeserializeObject<MultiFront>(path);}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ List<int>\ lp\ =\ \textcolor{keyword}{new}\ List<int>();}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ List<double>\ lx\ =\ \textcolor{keyword}{new}\ List<double>();}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ List<double>\ ly\ =\ \textcolor{keyword}{new}\ List<double>();}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ t\ =\ 0;}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}[]\ tab\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{double}[2];}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ t\ =\ myJsonObject.geometry.coordinates.Length;}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i1\ =\ 0;\ i1\ <\ t;\ i1++)}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ t2\ =\ myJsonObject.geometry.coordinates[i1].Length;}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Console.WriteLine("{}multi:\ "{}\ +\ t2);}}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ (t2\ /\ 2)\ -\/\ 1;\ i++)}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tab\ =\ rf.WGS84ToLambert93((\textcolor{keywordtype}{double})myJsonObject.geometry.coordinates[i1][i,\ 0],}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (double)myJsonObject.geometry.coordinates[i1][i,\ 1]);}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lx.Add(tab[0]);}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ly.Add(tab[1]);}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lp.Add(myJsonObject.properties.NIV3\_14);}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tab\ =\ rf.WGS84ToLambert93((\textcolor{keywordtype}{double})myJsonObject.geometry.coordinates[i1][(t\ /\ 2)\ -\/\ 1,\ 0],}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{double})myJsonObject.geometry.coordinates[i1][(t\ /\ 2)\ -\/\ 1,\ 1]);}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lx.Add(tab[0]);}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ly.Add(tab[1]);}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lp.Add(myJsonObject.properties.NIV3\_14);}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (lp,\ lx,\ ly);}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ (List<int>,\ List<double>,\ List<double>,\ List<double>,\ List<double>)\ Linefront(\textcolor{keywordtype}{string}\ path)}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ ReadFile\ rf\ =\ \textcolor{keyword}{new}\ ReadFile();}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ dynamic\ myJsonObject\ =\ JsonConvert.DeserializeObject<LineFront>(path);}
+\DoxyCodeLine{00356\ }
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ List<int>\ lp\ =\ \textcolor{keyword}{new}\ List<int>();}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ List<double>\ lx1\ =\ \textcolor{keyword}{new}\ List<double>();}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ List<double>\ ly1\ =\ \textcolor{keyword}{new}\ List<double>();}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ List<double>\ lx2\ =\ \textcolor{keyword}{new}\ List<double>();}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ List<double>\ ly2\ =\ \textcolor{keyword}{new}\ List<double>();}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ t\ =\ 0;}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}[]\ tab\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{double}[4];}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ t\ =\ myJsonObject.geometry.coordinates.Length;}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ (t\ /\ 2)\ -\/\ 1;\ i++)}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00367\ }
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tab[0]\ =\ (double)myJsonObject.geometry.coordinates[i,\ 0];}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tab[1]\ =\ (double)myJsonObject.geometry.coordinates[i,\ 1];}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tab[2]\ =\ (double)myJsonObject.geometry.coordinates[i\ +\ 1,\ 0];}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tab[3]\ =\ (double)myJsonObject.geometry.coordinates[i\ +\ 1,\ 1];}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lx1.Add(tab[0]);}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ly1.Add(tab[1]);}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lx2.Add(tab[2]);}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ly2.Add(tab[3]);}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lp.Add(myJsonObject.properties.NIV3\_14);}
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (lp,\ lx1,\ ly1,\ lx2,\ ly2);}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00381\ \ \ \ \ \}}
+\DoxyCodeLine{00382\ \}}
+
+\end{DoxyCode}

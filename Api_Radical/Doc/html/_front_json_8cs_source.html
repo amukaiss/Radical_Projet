@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>API Radical:  Fichier source de Models/FrontJson.cs</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">API Radical<span id="projectnumber">&#160;3.4 aplha</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('_front_json_8cs_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">FrontJson.cs</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_front_json_8cs.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="keyword">using </span>System;</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="keyword">using </span>System.Collections.Generic;</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">using </span>System.Linq;</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">using </span>System.Threading.Tasks;</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_api_test01_1_1_models.html">ApiTest01.Models</a></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>{</div>
+<div class="foldopen" id="foldopen00011" data-start="{" data-end="};">
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="class_api_test01_1_1_models_1_1_front_json.html">   11</a></span>    <span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="class_api_test01_1_1_models_1_1_front_json.html">FrontJson</a></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="class_api_test01_1_1_models_1_1_front_json.html#a27f625b8e2b7a071cbe96953ad10fed8">   16</a></span>        <span class="keyword">public</span> <span class="keywordtype">string</span> <a class="code hl_property" href="class_api_test01_1_1_models_1_1_front_json.html#a27f625b8e2b7a071cbe96953ad10fed8">type</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="class_api_test01_1_1_models_1_1_front_json.html#aa98b4617c421354bfe4bc89fb0e7bb33">   20</a></span>        <span class="keyword">public</span> <a class="code hl_class" href="class_api_test01_1_1_models_1_1_feature.html">Feature</a>[] <a class="code hl_property" href="class_api_test01_1_1_models_1_1_front_json.html#aa98b4617c421354bfe4bc89fb0e7bb33">features</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    }</div>
+</div>
+<div class="foldopen" id="foldopen00025" data-start="{" data-end="};">
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="class_api_test01_1_1_models_1_1_feature.html">   25</a></span>    <span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="class_api_test01_1_1_models_1_1_feature.html">Feature</a></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="class_api_test01_1_1_models_1_1_feature.html#a217c236b8f91fff52cdc970f28e41db0">   30</a></span>        <span class="keyword">public</span> <span class="keywordtype">string</span> <a class="code hl_property" href="class_api_test01_1_1_models_1_1_feature.html#a217c236b8f91fff52cdc970f28e41db0">type</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="class_api_test01_1_1_models_1_1_feature.html#a4ddb2d42ecc888760f88b1b27a6209d0">   34</a></span>        <span class="keyword">public</span> <a class="code hl_class" href="class_api_test01_1_1_models_1_1_geometry.html">Geometry</a> <a class="code hl_property" href="class_api_test01_1_1_models_1_1_feature.html#a4ddb2d42ecc888760f88b1b27a6209d0">geometry</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="class_api_test01_1_1_models_1_1_feature.html#a91240fbf94f3142ddc1cb45a1952b19c">   38</a></span>        <span class="keyword">public</span> <a class="code hl_class" href="class_api_test01_1_1_models_1_1_properties.html">Properties</a> <a class="code hl_property" href="class_api_test01_1_1_models_1_1_feature.html#a91240fbf94f3142ddc1cb45a1952b19c">properties</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    }</div>
+</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="foldopen" id="foldopen00044" data-start="{" data-end="};">
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="class_api_test01_1_1_models_1_1_geometry.html">   44</a></span>    <span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="class_api_test01_1_1_models_1_1_geometry.html">Geometry</a></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="class_api_test01_1_1_models_1_1_geometry.html#a38c648fbf07c04aa7285e9757cf05dc7">   49</a></span>        <span class="keyword">public</span> <span class="keywordtype">string</span> <a class="code hl_property" href="class_api_test01_1_1_models_1_1_geometry.html#a38c648fbf07c04aa7285e9757cf05dc7">type</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="class_api_test01_1_1_models_1_1_geometry.html#afe8744d6b8103647eceb328ca326a2a5">   53</a></span>        <span class="keyword">public</span> <span class="keywordtype">float</span>[,] <a class="code hl_property" href="class_api_test01_1_1_models_1_1_geometry.html#afe8744d6b8103647eceb328ca326a2a5">coordinates</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    }</div>
+</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="foldopen" id="foldopen00059" data-start="{" data-end="};">
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="class_api_test01_1_1_models_1_1_properties.html">   59</a></span>    <span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="class_api_test01_1_1_models_1_1_properties.html">Properties</a></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    {</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="class_api_test01_1_1_models_1_1_properties.html#a7f3ce3aa889524cc68923200dbfe71e3">   64</a></span>        <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code hl_property" href="class_api_test01_1_1_models_1_1_properties.html#a7f3ce3aa889524cc68923200dbfe71e3">NIV3_14</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="comment">/*</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment">        public int Id { get; set; }</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment">        public int NIV1_14 { get; set; }</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment">        public string LIB1_14 { get; set; }</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">        public int NIV2_14 { get; set; }</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment">        public string LIB2_14 { get; set; }</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment">        public int NIV3_14 { get; set; }</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment">        public string LIB3_14 { get; set; }</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment">        public float Area_m2 { get; set; }</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment">        public float Area_ha { get; set; }</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment">        public string Donnee_exo { get; set; }</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment">        public string DOUTE_14 { get; set; }</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="comment">        */</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    }</div>
+</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>}</div>
+<div class="ttc" id="aclass_api_test01_1_1_models_1_1_feature_html"><div class="ttname"><a href="class_api_test01_1_1_models_1_1_feature.html">ApiTest01.Models.Feature</a></div><div class="ttdoc">The feature.</div><div class="ttdef"><b>Definition</b> <a href="#l00025">FrontJson.cs:26</a></div></div>
+<div class="ttc" id="aclass_api_test01_1_1_models_1_1_feature_html_a217c236b8f91fff52cdc970f28e41db0"><div class="ttname"><a href="class_api_test01_1_1_models_1_1_feature.html#a217c236b8f91fff52cdc970f28e41db0">ApiTest01.Models.Feature.type</a></div><div class="ttdeci">string type</div><div class="ttdoc">Gets or Sets the type.</div><div class="ttdef"><b>Definition</b> <a href="#l00030">FrontJson.cs:30</a></div></div>
+<div class="ttc" id="aclass_api_test01_1_1_models_1_1_feature_html_a4ddb2d42ecc888760f88b1b27a6209d0"><div class="ttname"><a href="class_api_test01_1_1_models_1_1_feature.html#a4ddb2d42ecc888760f88b1b27a6209d0">ApiTest01.Models.Feature.geometry</a></div><div class="ttdeci">Geometry geometry</div><div class="ttdoc">Gets or Sets the geometry.</div><div class="ttdef"><b>Definition</b> <a href="#l00034">FrontJson.cs:34</a></div></div>
+<div class="ttc" id="aclass_api_test01_1_1_models_1_1_feature_html_a91240fbf94f3142ddc1cb45a1952b19c"><div class="ttname"><a href="class_api_test01_1_1_models_1_1_feature.html#a91240fbf94f3142ddc1cb45a1952b19c">ApiTest01.Models.Feature.properties</a></div><div class="ttdeci">Properties properties</div><div class="ttdoc">Gets or Sets the properties.</div><div class="ttdef"><b>Definition</b> <a href="#l00038">FrontJson.cs:38</a></div></div>
+<div class="ttc" id="aclass_api_test01_1_1_models_1_1_front_json_html"><div class="ttname"><a href="class_api_test01_1_1_models_1_1_front_json.html">ApiTest01.Models.FrontJson</a></div><div class="ttdoc">The front json.</div><div class="ttdef"><b>Definition</b> <a href="#l00011">FrontJson.cs:12</a></div></div>
+<div class="ttc" id="aclass_api_test01_1_1_models_1_1_front_json_html_a27f625b8e2b7a071cbe96953ad10fed8"><div class="ttname"><a href="class_api_test01_1_1_models_1_1_front_json.html#a27f625b8e2b7a071cbe96953ad10fed8">ApiTest01.Models.FrontJson.type</a></div><div class="ttdeci">string type</div><div class="ttdoc">Gets or Sets the type.</div><div class="ttdef"><b>Definition</b> <a href="#l00016">FrontJson.cs:16</a></div></div>
+<div class="ttc" id="aclass_api_test01_1_1_models_1_1_front_json_html_aa98b4617c421354bfe4bc89fb0e7bb33"><div class="ttname"><a href="class_api_test01_1_1_models_1_1_front_json.html#aa98b4617c421354bfe4bc89fb0e7bb33">ApiTest01.Models.FrontJson.features</a></div><div class="ttdeci">Feature[] features</div><div class="ttdoc">Gets or Sets the features.</div><div class="ttdef"><b>Definition</b> <a href="#l00020">FrontJson.cs:20</a></div></div>
+<div class="ttc" id="aclass_api_test01_1_1_models_1_1_geometry_html"><div class="ttname"><a href="class_api_test01_1_1_models_1_1_geometry.html">ApiTest01.Models.Geometry</a></div><div class="ttdoc">The geometry.</div><div class="ttdef"><b>Definition</b> <a href="#l00044">FrontJson.cs:45</a></div></div>
+<div class="ttc" id="aclass_api_test01_1_1_models_1_1_geometry_html_a38c648fbf07c04aa7285e9757cf05dc7"><div class="ttname"><a href="class_api_test01_1_1_models_1_1_geometry.html#a38c648fbf07c04aa7285e9757cf05dc7">ApiTest01.Models.Geometry.type</a></div><div class="ttdeci">string type</div><div class="ttdoc">Gets or Sets the type.</div><div class="ttdef"><b>Definition</b> <a href="#l00049">FrontJson.cs:49</a></div></div>
+<div class="ttc" id="aclass_api_test01_1_1_models_1_1_geometry_html_afe8744d6b8103647eceb328ca326a2a5"><div class="ttname"><a href="class_api_test01_1_1_models_1_1_geometry.html#afe8744d6b8103647eceb328ca326a2a5">ApiTest01.Models.Geometry.coordinates</a></div><div class="ttdeci">float[,] coordinates</div><div class="ttdoc">Gets or Sets the coordinates.</div><div class="ttdef"><b>Definition</b> <a href="#l00053">FrontJson.cs:53</a></div></div>
+<div class="ttc" id="aclass_api_test01_1_1_models_1_1_properties_html"><div class="ttname"><a href="class_api_test01_1_1_models_1_1_properties.html">ApiTest01.Models.Properties</a></div><div class="ttdoc">The properties.</div><div class="ttdef"><b>Definition</b> <a href="#l00059">FrontJson.cs:60</a></div></div>
+<div class="ttc" id="aclass_api_test01_1_1_models_1_1_properties_html_a7f3ce3aa889524cc68923200dbfe71e3"><div class="ttname"><a href="class_api_test01_1_1_models_1_1_properties.html#a7f3ce3aa889524cc68923200dbfe71e3">ApiTest01.Models.Properties.NIV3_14</a></div><div class="ttdeci">int NIV3_14</div><div class="ttdoc">Gets or Sets the niv3 14.</div><div class="ttdef"><b>Definition</b> <a href="#l00064">FrontJson.cs:64</a></div></div>
+<div class="ttc" id="anamespace_api_test01_1_1_models_html"><div class="ttname"><a href="namespace_api_test01_1_1_models.html">ApiTest01.Models</a></div><div class="ttdef"><b>Definition</b> <a href="_abaque_8cs_source.html#l00006">Abaque.cs:7</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_22305cb0964bbe63c21991dd2265ce48.html">Models</a></li><li class="navelem"><a class="el" href="_front_json_8cs.html">FrontJson.cs</a></li>
+    <li class="footer">Généré par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,185 @@
+\doxysection{Fonction4\+Controller.\+cs}
+\label{_fonction4_controller_8cs_source}\index{Controllers/Fonction4Controller.cs@{Controllers/Fonction4Controller.cs}}
+\textbf{ Aller à la documentation de ce fichier.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{keyword}{using\ }ApiTest01.Services;}
+\DoxyCodeLine{00002\ \textcolor{keyword}{using\ }Microsoft.AspNetCore.Mvc;}
+\DoxyCodeLine{00003\ \textcolor{keyword}{using\ }MongoDB.Bson;}
+\DoxyCodeLine{00004\ \textcolor{keyword}{using\ }Newtonsoft.Json;}
+\DoxyCodeLine{00005\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{00006\ \textcolor{keyword}{using\ }System.Collections.Generic;}
+\DoxyCodeLine{00007\ \textcolor{keyword}{using\ }System.IO;}
+\DoxyCodeLine{00008\ \textcolor{keyword}{using\ }System.Linq;}
+\DoxyCodeLine{00009\ \textcolor{keyword}{using\ }System.Numerics;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }ApiTest01.Controllers}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ [Route(\textcolor{stringliteral}{"{}api/[controller]"{}})]}
+\DoxyCodeLine{00017\ \ \ \ \ [ApiController]}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }Fonction4Controller\ :\ Controller}
+\DoxyCodeLine{00019\ \ \ \ \ \{}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ [HttpPost]}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ List<List<List<Double>>>\ Post(\textcolor{keywordtype}{string}\ mnt\_file,\ \textcolor{keywordtype}{string}\ rect\_file,\ \textcolor{keywordtype}{string}\ front\_file,\ \textcolor{keywordtype}{string}\ flamme\_file,}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ humi,\ \textcolor{keywordtype}{double}\ vent\_force,\ \textcolor{keywordtype}{double}\ vent\_direction)}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ public\ IEnumerable<Angles>\ Post(string\ mnt\_file,\ string\ rect\_file,\ string\ front\_file,\ string\ flamme\_file,}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ double\ humi,\ double\ vent\_force,\ double\ vent\_direction)}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Measure\ calculation's\ time}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ var\ watch\ =\ System.Diagnostics.Stopwatch.StartNew();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}\(\backslash\)nCalculating..."{}});}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ Fonction1\ f1\ =\ \textcolor{keyword}{new}\ Fonction1();}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ Fonction2\ f2\ =\ \textcolor{keyword}{new}\ Fonction2();}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ Fonction3\ f3\ =\ \textcolor{keyword}{new}\ Fonction3();}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ ReadFile\ r\ =\ \textcolor{keyword}{new}\ ReadFile();}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ diametre\ =\ 2.5;}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ rayon\ =\ diametre\ /\ 2;}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ pas\_mesh\ =\ 1.0;}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{double}[]\ xmnt,\ \textcolor{keywordtype}{double}[]\ ymnt,\ Double[,]\ zmnt,\ \textcolor{keywordtype}{double}\ cellsize)\ =\ r.lecture\_grosfichier(mnt\_file,\ rect\_file);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}\(\backslash\)tLecture\ fichiers..."{}});}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}\(\backslash\)tConstruction:\ Maillage\ du\ domaine..."{}});}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ (Double[,]\ X,\ Double[,]\ Y)\ =\ f1.Maillage\_Domaine\_Carre(rect\_file,\ xmnt,\ ymnt,\ pas\_mesh);}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ nx\ =\ X.GetLength(1);\textcolor{keywordtype}{int}\ ny\ =\ X.GetLength(0);}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}\(\backslash\)tCalcul\ :\ Elevation\ du\ maillage\ domaine..."{}});}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}[,]\ Z\ =\ f1.Elevation\_Domaine(X,\ Y,\ xmnt,\ ymnt,\ zmnt,\ cellsize);}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}\(\backslash\)tConstruction\ :\ Maillage\ du\ front..."{}});}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ (List<double>\ xf,\ List<double>\ yf,\ List<double>\ zf,\ List<int>\ oc,\textcolor{keywordtype}{float}[,]\ normalf,\ \textcolor{keywordtype}{int}[,]\ dansFeu,\ \textcolor{keywordtype}{int}[,]\ numMesh)}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ =\ f2.Maillage\_Front(front\_file,\ X,\ Y,\ Z,\ xmnt,\ ymnt,\ zmnt,\ cellsize,\ diametre);}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}\(\backslash\)tLecture\ :\ fichier\ de\ flamme..."{}});}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}[,]\ list\ =\ r.readFlamme(flamme\_file);}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ List<double>\ lLfl\ =\ \textcolor{keyword}{new}\ List<double>();}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ List<double>\ lPouvoir\ =\ \textcolor{keyword}{new}\ List<double>();}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ List<double>\ lRayon\ =\ \textcolor{keyword}{new}\ List<double>();}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ oc.Count;\ i++)}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ list.GetLength(0);\ j++)}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (oc[i]\ ==\ list[j,\ 0])}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lLfl.Add(list[j,\ 2]);}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lPouvoir.Add(list[j,\ 1]);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lRayon.Add(list[j,\ 4]);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TO\ REVIEW}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ nIso\ =\ 20;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}[,]\ bdata\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{double}[nIso,\ 4];}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}[,]\ resultat\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{double}[ny\ *\ nx,\ 3];}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}[,]\ prad\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{double}[ny,\ nx];}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}[]\ tab\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{double}[2];}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ k\ =\ 0;}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ ny;\ j++)}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ nx;\ i++)}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ prad[j,\ i]\ =\ 0;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tab\ =\ r.Lambert93ToWGS84(X[j,\ i],\ Y[j,\ i]);}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resultat[k,\ 0]\ =\ X[j,\ i];}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resultat[k,\ 1]\ =\ Y[j,\ i];}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resultat[k,\ 2]\ =\ 0;}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ k++;}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//StreamWriter\ sw\ =\ new\ StreamWriter("{}resultat.dat"{});}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Boucle\ sur\ les\ sites\ en\ feu}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}\(\backslash\)tGathering\ data\ from\ database..."{}});}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ List<BsonDocument>\ docs\ =\ \textcolor{keyword}{new}\ List<BsonDocument>();}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ index\ =\ 0;\ index\ <\ xf.Count;\ index++)}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//for\ (int\ index\ =\ 0;\ index\ <\ 5;\ index++)}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}[]\ inc\ =\ f3.Angle\_direction\_ellipse(lLfl[index],\ vent\_force,\ vent\_direction,}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keyword}{new}\ Vector3(normalf[index,\ 0],\ normalf[index,\ 1],\ normalf[index,\ 2])));}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}[]\ voisins\ =\ f3.Voisinage\_ifeu(index,\ xf[index],\ yf[index],\ nx,\ ny,\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dansFeu,\ numMesh,\ rayon,\ prad,\ lPouvoir[index],\ X,\ Y);}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ angle\ =\ inc[0]\ *\ 180\ /\ Math.PI;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ teta=\ inc[1]\ *\ 180\ /\ Math.PI;}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ angle\_degre\ =\ Math.Min(angle,\ 65);\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ docs\ =\ f3.Chercher2((\textcolor{keywordtype}{int})lLfl[index],\ lRayon[index],\ (\textcolor{keywordtype}{int})(angle\_degre),\ humi);}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (BsonDocument\ doc\ \textcolor{keywordflow}{in}\ docs)}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ json\ =\ doc.ToString();}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ myJsonObject\ =\ JsonConvert.DeserializeObject<Models.Abaque>(json);}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ nIso;\ i++)}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bdata[i,\ 0]\ =\ myJsonObject.ISOFLUX[i][0].iso;}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bdata[i,\ 1]\ =\ myJsonObject.ISOFLUX[i][0].Ellipse[0];}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bdata[i,\ 2]\ =\ myJsonObject.ISOFLUX[i][0].Ellipse[1];}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bdata[i,\ 3]\ =\ myJsonObject.ISOFLUX[i][0].Ellipse[2];}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ prad\ =\ f3.Calcul\_isoflux(xf[index],\ yf[index],\ lPouvoir[index],\ ny,\ nx,}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ X,\ Y,\ inc[1],\ bdata,\ diametre,\ voisins,\ prad);}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(e);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ m\ =\ 0;}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ X.GetLength(0);\ j++)}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ X.GetLength(1);\ i++)}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resultat[m,\ 2]\ =\ prad[j,\ i];}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m++;}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//sw.WriteLine("{}TITLE=\(\backslash\)"{}CARRE\(\backslash\)"{}"{});}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//sw.WriteLine("{}VARIABLES\ =\ \(\backslash\)"{}X\(\backslash\)"{},\ \(\backslash\)"{}Y\(\backslash\)"{},\(\backslash\)"{}Z\(\backslash\)"{},\ \(\backslash\)"{}FLUX\(\backslash\)"{}"{});}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//sw.WriteLine("{}ZONE\ I=\ \{0\}\ J=\{1\}\ \ F=POINT"{},\ X.GetLength(1),\ X.GetLength(0));}}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}[,,]\ resXY\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{double}[X.GetLength(0),\ X.GetLength(1),\ 3];}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ k\ =\ 0;}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ X.GetLength(0);\ i++)}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ X.GetLength(1);\ j++)}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resXY[i,\ j,\ 0]\ =\ X[i,\ j];}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resXY[i,\ j,\ 1]\ =\ Y[i,\ j];}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resXY[i,\ j,\ 2]\ =\ resultat[k,\ 2];}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//sw.WriteLine("{}\{0:F2\}\ \ \ \{1:F2\}\ \ \ \{2:F2\}\ \ \{3:F2\}\ "{},\ resXY[i,\ j,\ 0],\ resXY[i,\ j,\ 1],\ Z[i,\ j],\ resXY[i,\ j,\ 2]);}}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ k++;}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//sw.Close();}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}[][]\ re\ =\ r.ConvertToJaggedArray(resultat);}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ var\ list3D\ =\ resXY.Cast<\textcolor{keywordtype}{double}>().Select((v,\ n)\ =>\ \textcolor{keyword}{new}}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x\ =\ n\ /\ (resXY.GetLength(2)\ *\ resXY.GetLength(1)),}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ y\ =\ (n\ /\ resXY.GetLength(2))\ \%\ resXY.GetLength(1),}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value\ =\ v,}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ .GroupBy(q\ =>\ q.x)}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ .Select(q\ =>\ q.GroupBy(w\ =>\ w.y,\ w\ =>\ w.value)}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ .Select(e\ =>\ e.ToList())}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ .ToList())}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ .ToList();}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ watch.Stop();}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ var\ elapsedMs\ =\ watch.ElapsedMilliseconds;}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(\textcolor{stringliteral}{"{}Done!\(\backslash\)n***\(\backslash\)nCalculation\ took\ "{}}\ +\ elapsedMs\ +\ \textcolor{stringliteral}{"{}\ ms."{}});}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ list3D;}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00191\ \ \ \ \ \}}
+\DoxyCodeLine{00192\ \}}
+\DoxyCodeLine{00193\ }
+
+\end{DoxyCode}

@@ -1,0 +1,65 @@
+#map {
+  float: left;
+  width: 100%;
+  height: 700px;
+}
+
+#visualMap {
+  width: 100%;
+  height: 700px;
+}
+
+#Occmap {
+  float: left;
+  width: 75%;
+  height: 400px;
+}
+
+.fluid {
+  max-width: 100%;
+}
+
+.legend {
+  background-color: white;
+  box-shadow: 5px 5px 10px black;
+  border-radius: 5px;
+  padding: 5px;
+  line-height: 15px;
+}
+.legend i {
+  width: 15px;
+  height: 15px;
+  float: left;
+  margin-right: 5px;
+}
+.infos {
+  text-align: center;
+  font-size: 12px;
+  color: #5b0947;
+  font-weight: bold;
+}
+.side {
+  float: left;
+  width: 20%;
+  height: 450px;
+  background-color: white;
+  color: #175b81;
+}
+table,
+th,
+td {
+  margin: 0px 5px;
+  padding: 2px 4px;
+  font: 10px Verdana;
+}
+th {
+  font-size: 10px;
+  font-weight: bold;
+}
+td {
+  font-size: 10px;
+  font-weight: normal;
+}
+tr {
+  background: white;
+}

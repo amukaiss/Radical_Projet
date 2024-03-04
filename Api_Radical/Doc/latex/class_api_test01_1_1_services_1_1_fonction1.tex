@@ -1,0 +1,111 @@
+\doxysection{Référence de la classe Api\+Test01.\+Services.\+Fonction1}
+\label{class_api_test01_1_1_services_1_1_fonction1}\index{ApiTest01.Services.Fonction1@{ApiTest01.Services.Fonction1}}
+
+
+Classe contient les fonctions \+: Maillage\+\_\+\+Domaine\+\_\+\+Carre et Elevation\+\_\+\+Domaine.  
+
+
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ double}[,] \textbf{ Maillage\+\_\+\+Domaine\+\_\+\+Carre} (string rectangle, \textbf{ double}[$\,$] xmnt, \textbf{ double}[$\,$] ymnt, \textbf{ double} pas)
+\item 
+\textbf{ double}[,] \textbf{ Elevation\+\_\+\+Domaine} (\textbf{ double}[,] X, \textbf{ double}[,] Y, \textbf{ double}[$\,$] xmnt, \textbf{ double}[$\,$] ymnt, \textbf{ double}[,] zmnt, \textbf{ double} cellsize)
+\begin{DoxyCompactList}\small\item\em Elevations des points du maillage. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ double} [,]
+\begin{DoxyCompactList}\small\item\em Cette fonction sert à maillaer le domaine cible. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Classe contient les fonctions \+: Maillage\+\_\+\+Domaine\+\_\+\+Carre et Elevation\+\_\+\+Domaine. 
+
+Définition à la ligne \textbf{ 10} du fichier \textbf{ Fonction1.\+cs}.
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\label{class_api_test01_1_1_services_1_1_fonction1_a9889203dd8e0765b09cdf35ecac51025} 
+\index{ApiTest01.Services.Fonction1@{ApiTest01.Services.Fonction1}!Elevation\_Domaine@{Elevation\_Domaine}}
+\index{Elevation\_Domaine@{Elevation\_Domaine}!ApiTest01.Services.Fonction1@{ApiTest01.Services.Fonction1}}
+\doxysubsubsection{Elevation\_Domaine()}
+{\footnotesize\ttfamily \textbf{ double}[,] Api\+Test01.\+Services.\+Fonction1.\+Elevation\+\_\+\+Domaine (\begin{DoxyParamCaption}\item[{\textbf{ double}}]{X[,],  }\item[{\textbf{ double}}]{Y[,],  }\item[{\textbf{ double}[$\,$]}]{xmnt,  }\item[{\textbf{ double}[$\,$]}]{ymnt,  }\item[{\textbf{ double}}]{zmnt[,],  }\item[{\textbf{ double}}]{cellsize }\end{DoxyParamCaption})}
+
+
+
+Elevations des points du maillage. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em X} & Le tableau X retourné par la fonction Maillage\+\_\+\+Domaine\+\_\+\+Carre.\\
+\hline
+{\em Y} & Le tableau Y retourné par la fonction Maillage\+\_\+\+Domaine\+\_\+\+Carre.\\
+\hline
+{\em xmnt} & Les x de MNT. \\
+\hline
+{\em ymnt} & Les y de MNT.\\
+\hline
+{\em zmnt} & Les z de MNT.\\
+\hline
+{\em cellsize} & Le pas de résolution de MNT.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Tableau Z même taille que X et Y.
+\end{DoxyReturn}
+
+
+Définition à la ligne \textbf{ 58} du fichier \textbf{ Fonction1.\+cs}.
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 0
+\label{class_api_test01_1_1_services_1_1_fonction1_acc8ebb35cb69d53f486b42ecab37a113} 
+\index{ApiTest01.Services.Fonction1@{ApiTest01.Services.Fonction1}!Maillage\_Domaine\_Carre@{Maillage\_Domaine\_Carre}}
+\index{Maillage\_Domaine\_Carre@{Maillage\_Domaine\_Carre}!ApiTest01.Services.Fonction1@{ApiTest01.Services.Fonction1}}
+\doxysubsubsection{Maillage\_Domaine\_Carre()}
+{\footnotesize\ttfamily \textbf{ double}[,] Api\+Test01.\+Services.\+Fonction1.\+Maillage\+\_\+\+Domaine\+\_\+\+Carre (\begin{DoxyParamCaption}\item[{string}]{rectangle,  }\item[{\textbf{ double}[$\,$]}]{xmnt,  }\item[{\textbf{ double}[$\,$]}]{ymnt,  }\item[{\textbf{ double}}]{pas }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne \textbf{ 20} du fichier \textbf{ Fonction1.\+cs}.
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 1
+
+
+\doxysubsection{Documentation des données membres}
+\label{class_api_test01_1_1_services_1_1_fonction1_ab1bdde4e00c6fc22412627e12d0bb1e6} 
+\index{ApiTest01.Services.Fonction1@{ApiTest01.Services.Fonction1}!double@{double}}
+\index{double@{double}!ApiTest01.Services.Fonction1@{ApiTest01.Services.Fonction1}}
+\doxysubsubsection{double}
+{\footnotesize\ttfamily Api\+Test01.\+Services.\+Fonction1.\+double[,]}
+
+
+
+Cette fonction sert à maillaer le domaine cible. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em rectangle} & nom du rectangle limitant le domaine d\textquotesingle{}étude\\
+\hline
+{\em xmnt} & Les x issus de MNT.\\
+\hline
+{\em ymnt} & Les y issus de MNT. \\
+\hline
+{\em pas} & Le pas de résolution de MNT\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Deux tableaux X et Y. du maillage
+\end{DoxyReturn}
+
+
+Définition à la ligne \textbf{ 20} du fichier \textbf{ Fonction1.\+cs}.
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+Services/\textbf{ Fonction1.\+cs}\end{DoxyCompactItemize}

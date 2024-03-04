@@ -1,0 +1,210 @@
+\doxysection{Fonction3.\+cs}
+\label{_fonction3_8cs_source}\index{Services/Fonction3.cs@{Services/Fonction3.cs}}
+\textbf{ Aller à la documentation de ce fichier.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{00002\ \textcolor{keyword}{using\ }System.Collections.Generic;}
+\DoxyCodeLine{00003\ \textcolor{keyword}{using\ }System.Linq;}
+\DoxyCodeLine{00004\ \textcolor{keyword}{using\ }System.Numerics;}
+\DoxyCodeLine{00005\ \textcolor{keyword}{using\ }ApiTest01.Models;}
+\DoxyCodeLine{00006\ \textcolor{keyword}{using\ }MongoDB.Bson;}
+\DoxyCodeLine{00007\ \textcolor{keyword}{using\ }MongoDB.Driver;}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }ApiTest01.Services}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }Fonction3}
+\DoxyCodeLine{00017\ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{double}[]\ Angle\_direction\_ellipse(\textcolor{keywordtype}{double}\ lfl,\ \textcolor{keywordtype}{double}\ vent\_force,\ \textcolor{keywordtype}{double}\ vent\_direction,\ Vector3\ normal)}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ Vector3\ xplus\ =\ \textcolor{keyword}{new}\ Vector3(1,\ 0,\ 0);}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ Vector3\ yplus\ =\ \textcolor{keyword}{new}\ Vector3(0,\ 1,\ 0);}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ Vector3\ zplus\ =\ \textcolor{keyword}{new}\ Vector3(0,\ 0,\ 1);}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ Vector3\ vent\ =\ \textcolor{keyword}{new}\ Vector3();}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ Vector3\ vent\_tangentiel\ =\ \textcolor{keyword}{new}\ Vector3();}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ Vector3\ pente\_tangentiel\_fixe\ =\ \textcolor{keyword}{new}\ Vector3();}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ Vector3\ pente\ =\ \textcolor{keyword}{new}\ Vector3();}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ Vector3\ A\ =\ \textcolor{keyword}{new}\ Vector3();}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ Vector3\ vflamme\ =\ \textcolor{keyword}{new}\ Vector3();}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ Vector3\ V\ =\ \textcolor{keyword}{new}\ Vector3();}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ Vector3\ W\ =\ \textcolor{keyword}{new}\ Vector3();}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ angle,\ direction;}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ gravite\ =\ 9.81;}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ hauteur\_flamme;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ VENT\_TANGENTIEL:\ VECTEUR\ VENT\ TANGENTIEL,\ DANS\ LE\ PLAN\ DU\ TERRAIN,\ }}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ CALCULE\ À\ PARTIR\ DE\ LA\ FORCE\ DU\ VENT\ ET\ DE\ SA\ DIRECTION}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ vent.X\ =\ (float)(vent\_force\ /\ 3.6\ *\ Math.Sin(vent\_direction\ *\ Math.PI\ /\ 180\ -\/\ Math.PI));}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ vent.Y\ =\ (float)(vent\_force\ /\ 3.6\ *\ Math.Cos(vent\_direction\ *\ Math.PI\ /\ 180\ -\/\ Math.PI));}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ vent.Z\ =\ 0;}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ A\ =\ Vector3.Cross(vent,\ normal);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ vent\_tangentiel\ =\ Vector3.Cross(normal,\ A);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ vent\_u\ =\ Math.Sqrt(Vector3.Dot(vent\_tangentiel,\ vent\_tangentiel));}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ CALCUL\ DE\ L'ANGLE\ DE\ PENTE\ PAR\ RAPPORT\ À\ LA\ VERTICALE\ ABSOLUE\ (Z)}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ CALCUL\ DE\ LA\ DIRECTION\ DE\ PLUS\ GRANDE\ PENTE\ PAR\ RAPPORT\ AU\ REPÉRE\ FIXE(X,\ Y,\ Z)}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ A\ =\ Vector3.Cross(zplus,\ normal);}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ pente\ =\ Vector3.Cross(normal,\ A);}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ norme\_pente\ =\ Math.Sqrt(Vector3.Dot(pente,\ pente));}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (norme\_pente\ <=\ 1e-\/5)}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hauteur\_flamme\ =\ lfl\ *\ Math.Pow(1\ +\ 4\ *\ Math.Pow(vent\_u,\ 2)\ /\ (gravite\ *\ lfl),\ -\/0.5);}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ angle\ =\ Math.Atan(1.22\ *\ vent\_u\ /\ Math.Sqrt(gravite\ *\ hauteur\_flamme));}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ direction\ =\ vent\_direction\ *\ Math.PI\ /\ 180\ -\/\ Math.PI;}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (Math.Abs(vent\_force\ /\ 3.6)\ <=\ 1e-\/5)}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ angle\ =\ Math.Asin(Vector3.Dot(pente,\ zplus)\ /\ norme\_pente);}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hauteur\_flamme\ =\ lfl*Math.Cos(angle);}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ A\ =\ Vector3.Cross(pente,\ zplus);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pente\_tangentiel\_fixe\ =\ Vector3.Cross(zplus,\ A);}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ norme\_pente\_tangentiel\_fixe\ =\ Math.Sqrt(Vector3.Dot(pente\_tangentiel\_fixe,\ pente\_tangentiel\_fixe));}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ direction\ =\ Math.Acos(Vector3.Dot(pente\_tangentiel\_fixe,\ yplus)\ /\ norme\_pente\_tangentiel\_fixe);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Vector3.Dot(pente\_tangentiel\_fixe,\ yplus)\ <\ 0)}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ direction=2*Math.PI\ -\/direction;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hauteur\_flamme\ =\ lfl\ *\ Math.Pow(1\ +\ 4\ *\ Math.Pow(vent\_force\ /\ 3.6,\ 2)\ /\ (gravite\ *\ lfl),\ -\/0.5);}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ angle\ =\ Math.Atan(1.22\ *\ (vent\_force\ /\ 3.6)\ /\ Math.Sqrt(gravite\ *\ hauteur\_flamme));}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vflamme\ =\ (float)(Math.Sin(angle))\ *\ (Vector3.Multiply((\textcolor{keywordtype}{float})(Math.Sin(vent\_direction\ *\ Math.PI\ /\ 180\ -\/\ Math.PI)),\ xplus)\ +}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Vector3.Multiply((\textcolor{keywordtype}{float})(Math.Cos(vent\_direction\ *\ Math.PI\ /\ 180\ -\/\ Math.PI)),\ yplus))\ +}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Vector3.Multiply((\textcolor{keywordtype}{float})(Math.Cos(angle)),\ zplus);}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vflamme\ =\ Vector3.Normalize(vflamme);}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ angle\ =\ Math.Acos(Vector3.Dot(vflamme,\ normal));}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ V\ =\ Vector3.Cross(vflamme,\ normal);}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ W\ =\ Vector3.Cross(zplus,\ V);}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ norme\_W\ =\ Math.Sqrt(Vector3.Dot(W,\ W));}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ ps\ =\ Vector3.Dot(W,\ yplus)\ /\ norme\_W;}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ direction\ =\ Math.Acos(ps);}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ps\ <\ 0)}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ direction\ =\ 2*\ Math.PI\ -\/\ direction;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}[]\ tab\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{double}[3];}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ tab[0]\ =\ (float)angle;}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ tab[1]\ =\ (float)direction;}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ tab[2]\ =\ (float)hauteur\_flamme;}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tab;}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}[]\ Voisinage\_ifeu(\textcolor{keywordtype}{int}\ ifeu,\ \textcolor{keywordtype}{double}\ xf,\ \textcolor{keywordtype}{double}\ yf,\ \textcolor{keywordtype}{int}\ nx,\ \textcolor{keywordtype}{int}\ ny,}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}[,]\ dansFeu,\ \textcolor{keywordtype}{int}[,]\ numMesh,\ \textcolor{keywordtype}{double}\ rayon,\ \textcolor{keywordtype}{double}[,]\ prad,}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ pemissif,\ \textcolor{keywordtype}{double}[,]\ X,\ \textcolor{keywordtype}{double}[,]\ Y)}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ List<int>\ nvoisins\ =\ \textcolor{keyword}{new}\ List<int>();}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ ny;\ j++)}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ nx;\ i++)}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ij\ =\ numMesh[j,\ i];}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dansFeu[j,i]\ ==\ 1)}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};\ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ dis\ =\ Math.Sqrt(Math.Pow(X[j,\ i]\ -\/\ xf,\ 2)\ +}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Math.Pow(Y[j,\ i]\ -\/\ yf,\ 2));}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dis\ <=\ rayon)}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dansFeu[j,\ i]\ =\ 1;}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ prad[j,\ i]\ =\ pemissif;}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dis\ >\ rayon\ \&\&\ dis\ <=\ Param.grand\_rayon\_ray)}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nvoisins.Add(ij);}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}[]\ voisinage\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{int}[nvoisins.Count];}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ nvoisins.CopyTo(voisinage);}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ voisinage;}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{double}[,]\ Calcul\_isoflux(\textcolor{keywordtype}{double}\ xf,\ \textcolor{keywordtype}{double}\ yf,\ \textcolor{keywordtype}{double}\ pemissif,\ \textcolor{keywordtype}{int}\ ny,\ \textcolor{keywordtype}{int}\ nx,}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}[,]\ X,\ \textcolor{keywordtype}{double}[,]\ Y,\ \textcolor{keywordtype}{double}\ teta\_flamme,\ \textcolor{keywordtype}{double}[,]\ bdata,\ \textcolor{keywordtype}{double}\ diametre,}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}[]\ voisins,\ \textcolor{keywordtype}{double}[,]\ prad)}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//StreamWriter\ sw\ =\ new\ StreamWriter("{}resultat.dat"{});}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}[,]\ tab\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{int}[nx\ *\ ny,\ 2];}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}[,]\ rotation\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{double}[2,\ 2];}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}[]\ point\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{double}[2];}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}[]\ rot\_point\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{double}[2];}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}[]\ centre\_ellipse\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{double}[2];}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ rayon\ =\ diametre\ /\ 2;}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ rotation[0,\ 0]\ =\ Math.Cos(teta\_flamme);}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ rotation[0,\ 1]\ =\ -\/Math.Sin(teta\_flamme);}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ rotation[1,\ 0]\ =\ Math.Sin(teta\_flamme);}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ rotation[1,\ 1]\ =\ Math.Cos(teta\_flamme);}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j1\ =\ 0;\ j1\ <\ voisins.GetLength(0);\ j1++)}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ j\ =\ voisins[j1]\ /\ nx;}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ i\ =\ voisins[j1]\ -\/\ j\ *\ nx;}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ dis\ =\ Math.Sqrt(Math.Pow(X[j,\ i]\ -\/\ xf,\ 2)\ +}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Math.Pow(Y[j,\ i]\ -\/\ yf,\ 2));}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dis\ >\ rayon\ \&\&\ dis\ <\ Param.grand\_rayon\_ray)}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ point[0]\ =\ X[j,\ i]\ -\/\ xf;}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ point[1]\ =\ Y[j,\ i]\ -\/\ yf;}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rot\_point[0]\ =\ point[0]\ *\ rotation[0,\ 0]\ +\ point[1]\ *\ rotation[0,\ 1];}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rot\_point[1]\ =\ point[0]\ *\ rotation[1,\ 0]\ +\ point[1]\ *\ rotation[1,\ 1];}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ k\ =\ bdata.GetLength(0)\ -\/\ 1;\ k\ >=\ 0;\ k-\/-\/)}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bdata[k,\ 1]\ <=\ 0\ ||\ bdata[k,\ 2]\ <=\ 0)}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ centre\_ellipse[0]\ =\ 0;}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ centre\_ellipse[1]\ =\ bdata[k,\ 3];}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ dss\ =\ Math.Pow((rot\_point[0]\ -\/\ centre\_ellipse[0])\ /\ bdata[k,\ 2],\ 2)\ +}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Math.Pow((rot\_point[1]\ -\/\ centre\_ellipse[1])\ /\ bdata[k,\ 1],\ 2);}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dss\ <=\ 1)}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ prad[j,\ i]\ =\ prad[j,\ i]\ +\ pemissif\ *\ bdata[k,\ 0];}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ prad;}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ List<BsonDocument>\ Chercher2(\textcolor{keywordtype}{double}\ lon,\ \textcolor{keywordtype}{double}\ ra,\ \textcolor{keywordtype}{double}\ inc,\ \textcolor{keywordtype}{double}\ humi)}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ var\ dbClient\ =\ \textcolor{keyword}{new}\ MongoClient(\textcolor{stringliteral}{"{}mongodb://localhost:27017"{}});}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ IMongoDatabase\ db\ =\ dbClient.GetDatabase(\textcolor{stringliteral}{"{}BD\_Radical"{}});}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ var\ abaquesCollect\ =\ db.GetCollection<BsonDocument>(\textcolor{stringliteral}{"{}Abaques"{}});}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ var\ builder\ =\ Builders<BsonDocument>.Filter;}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//var\ projection\ =\ Builders<Abaque>.Projection.Exclude(u\ =>\ u.\_id).Include(u\ =>\ u.ISOFLUX);}}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ var\ filter\ =\ builder.Eq(\textcolor{stringliteral}{"{}Humidite"{}},\ humi)\ \&\ builder.Eq(\textcolor{stringliteral}{"{}Rayon\_de\_flamme"{}},\ ra)\ \&\ builder.Eq(\textcolor{stringliteral}{"{}Longueur\_de\_flamme"{}},\ lon)\ \&\ builder.Eq(\textcolor{stringliteral}{"{}Inclinaison\_de\_flamme"{}},\ inc);}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ var\ sortDefinition\ =\ Builders<BsonDocument>.Sort.Descending(\textcolor{stringliteral}{"{}Longueur\_de\_flamme"{}});}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ var\ docs\ =\ abaquesCollect.Find(filter).Project(Builders<BsonDocument>.Projection.Include(\textcolor{stringliteral}{"{}ISOFLUX"{}}).Exclude(\textcolor{stringliteral}{"{}\_id"{}})).Sort(sortDefinition).Limit(1).ToList();}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ docs;}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00257\ \ \ \ \ \}}
+\DoxyCodeLine{00258\ \}}
+
+\end{DoxyCode}

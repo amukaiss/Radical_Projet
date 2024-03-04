@@ -1,0 +1,14 @@
+{
+  "api": {
+    "url": "https://localhost:5050/ps2f"
+  },
+  "file": {
+    "url": "https://localhost:444/uploads"
+  },
+  "apiServer": {
+    "url": "https://139.124.86.142:5050/ps2f"
+  },
+  "fileServer": {
+    "url": "https://139.124.86.142:444/uploads"
+  }
+}

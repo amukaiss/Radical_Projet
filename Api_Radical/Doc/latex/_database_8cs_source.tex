@@ -1,0 +1,47 @@
+\doxysection{Database.\+cs}
+\label{_database_8cs_source}\index{Services/Database.cs@{Services/Database.cs}}
+\textbf{ Aller à la documentation de ce fichier.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{00002\ \textcolor{keyword}{using\ }System.Collections.Generic;}
+\DoxyCodeLine{00003\ \textcolor{keyword}{using\ }System.Linq;}
+\DoxyCodeLine{00004\ \textcolor{keyword}{using\ }System.Threading.Tasks;}
+\DoxyCodeLine{00005\ \textcolor{keyword}{using\ }MongoDB.Bson;}
+\DoxyCodeLine{00006\ \textcolor{keyword}{using\ }MongoDB.Driver;}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }ApiTest01.Services}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }Abaque}
+\DoxyCodeLine{00014\ \ \ \ \ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ \_id\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{string}\ name\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{double}\ Longueur\_de\_flamme\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{double}\ Rayon\_de\_flamme\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{double}\ Inclinaison\_de\_flamme\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{double}\ Humidite\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ Array\ ISOFLUX\ \{\ \textcolor{keyword}{get};\ \textcolor{keyword}{set};\ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }Database}
+\DoxyCodeLine{00049\ \ \ \ \ \{}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ List<BsonDocument>\ chercher(\textcolor{keywordtype}{double}\ lon,\ \textcolor{keywordtype}{double}\ ra,\ \textcolor{keywordtype}{double}\ inc,\ \textcolor{keywordtype}{double}\ humi,\ \textcolor{keywordtype}{double}\ temp)}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ var\ dbClient\ =\ \textcolor{keyword}{new}\ MongoClient(\textcolor{stringliteral}{"{}mongodb://localhost:27017"{}});}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ IMongoDatabase\ db\ =\ dbClient.GetDatabase(\textcolor{stringliteral}{"{}BD\_Radical"{}});}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ var\ elli\ =\ db.GetCollection<BsonDocument>(\textcolor{stringliteral}{"{}Abaques2"{}});}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ var\ builder\ =\ Builders<BsonDocument>.Filter;}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ var\ projection\ =\ Builders<Abaque>.Projection.Exclude(u\ =>\ u.\_id).Include(u\ =>\ u.ISOFLUX);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ var\ filter\ =\ builder.Eq(\textcolor{stringliteral}{"{}Humidite"{}},\ humi)\ \&\ builder.Eq(\textcolor{stringliteral}{"{}Rayon\_de\_flamme"{}},\ ra)\ \&\ builder.Lte(\textcolor{stringliteral}{"{}Longueur\_de\_flamme"{}},\ lon)\ \&\ builder.Eq(\textcolor{stringliteral}{"{}Inclinaison\_de\_flamme"{}},\ inc);}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ var\ sortDefinition\ =\ Builders<BsonDocument>.Sort.Descending(\textcolor{stringliteral}{"{}Longueur\_de\_flamme"{}});}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ var\ docs\ =\ elli.Find(filter).Sort(sortDefinition).Limit(1).ToList();}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ docs;}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ \}}
+
+\end{DoxyCode}

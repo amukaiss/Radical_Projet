@@ -1,0 +1,31 @@
+\doxysection{Program.\+cs}
+\label{_program_8cs_source}\textbf{ Aller à la documentation de ce fichier.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{keyword}{using\ }Microsoft.AspNetCore.Hosting;}
+\DoxyCodeLine{00002\ \textcolor{keyword}{using\ }Microsoft.Extensions.Configuration;}
+\DoxyCodeLine{00003\ \textcolor{keyword}{using\ }Microsoft.Extensions.Hosting;}
+\DoxyCodeLine{00004\ \textcolor{keyword}{using\ }Microsoft.Extensions.Logging;}
+\DoxyCodeLine{00005\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{00006\ \textcolor{keyword}{using\ }System.Collections.Generic;}
+\DoxyCodeLine{00007\ \textcolor{keyword}{using\ }System.Linq;}
+\DoxyCodeLine{00008\ \textcolor{keyword}{using\ }System.Threading.Tasks;}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }ApiTest01}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }Program}
+\DoxyCodeLine{00016\ \ \ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Main(\textcolor{keywordtype}{string}[]\ args)}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ CreateHostBuilder(args).Build().Run();}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ IHostBuilder\ CreateHostBuilder(\textcolor{keywordtype}{string}[]\ args)\ =>}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ Host.CreateDefaultBuilder(args)}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .ConfigureWebHostDefaults(webBuilder\ =>}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ webBuilder.UseStartup<Startup>();}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+\DoxyCodeLine{00038\ \}}
+
+\end{DoxyCode}

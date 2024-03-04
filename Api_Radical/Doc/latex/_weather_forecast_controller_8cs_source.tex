@@ -1,0 +1,39 @@
+\doxysection{Weather\+Forecast\+Controller.\+cs}
+\label{_weather_forecast_controller_8cs_source}\index{Controllers/WeatherForecastController.cs@{Controllers/WeatherForecastController.cs}}
+\textbf{ Aller à la documentation de ce fichier.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{keyword}{using\ }Microsoft.AspNetCore.Mvc;}
+\DoxyCodeLine{00002\ \textcolor{keyword}{using\ }Microsoft.Extensions.Logging;}
+\DoxyCodeLine{00003\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{00004\ \textcolor{keyword}{using\ }System.Collections.Generic;}
+\DoxyCodeLine{00005\ \textcolor{keyword}{using\ }System.Linq;}
+\DoxyCodeLine{00006\ \textcolor{keyword}{using\ }System.Threading.Tasks;}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }ApiTest01.Controllers}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ [ApiController]}
+\DoxyCodeLine{00014\ \ \ \ \ [Route(\textcolor{stringliteral}{"{}[controller]"{}})]}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }WeatherForecastController\ :\ ControllerBase}
+\DoxyCodeLine{00016\ \ \ \ \ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ readonly\ \textcolor{keywordtype}{string}[]\ Summaries\ =\ \textcolor{keyword}{new}[]}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Freezing"{}},\ \textcolor{stringliteral}{"{}Bracing"{}},\ \textcolor{stringliteral}{"{}Chilly"{}},\ \textcolor{stringliteral}{"{}Cool"{}},\ \textcolor{stringliteral}{"{}Mild"{}},\ \textcolor{stringliteral}{"{}Warm"{}},\ \textcolor{stringliteral}{"{}Balmy"{}},\ \textcolor{stringliteral}{"{}Hot"{}},\ \textcolor{stringliteral}{"{}Sweltering"{}},\ \textcolor{stringliteral}{"{}Scorching"{}}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ ILogger<WeatherForecastController>\ \_logger;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ WeatherForecastController(ILogger<WeatherForecastController>\ logger)}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \_logger\ =\ logger;}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ [HttpGet]}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ Get()}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ var\ rng\ =\ \textcolor{keyword}{new}\ Random();}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2;}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \}}
+
+\end{DoxyCode}

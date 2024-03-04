@@ -1,0 +1,294 @@
+\doxysection{Référence de la classe Api\+Test01.\+Services.\+Read\+File}
+\label{class_api_test01_1_1_services_1_1_read_file}\index{ApiTest01.Services.ReadFile@{ApiTest01.Services.ReadFile}}
+
+
+The read file.  
+
+
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+string \textbf{ Calcul\+\_\+centre} (string mnt\+File)
+\item 
+string \textbf{ Get\+\_\+bbox} (string mnt\+File)
+\item 
+\textbf{ double} \textbf{ lecture\+\_\+grosfichier} (string mnt\+File, string path)
+\item 
+\textbf{ double}[$\,$] \textbf{ json\+Rectangle} (string path)
+\begin{DoxyCompactList}\small\item\em jsons the rectangle. \end{DoxyCompactList}\item 
+\textbf{ double}[$\,$] \textbf{ WGS84\+To\+Lambert93} (\textbf{ double} longitude, \textbf{ double} latitude)
+\begin{DoxyCompactList}\small\item\em WGS the s84 to lambert93. \end{DoxyCompactList}\item 
+\textbf{ double}[$\,$] \textbf{ Lambert93\+To\+WGS84} (\textbf{ double} x, \textbf{ double} y)
+\begin{DoxyCompactList}\small\item\em Lambert93 the to WG s84. \end{DoxyCompactList}\item 
+T[$\,$][$\,$] \textbf{ Convert\+To\+Jagged\+Array$<$ T $>$} (T[,] multi\+Array)
+\begin{DoxyCompactList}\small\item\em Convert to jagged array. \end{DoxyCompactList}\item 
+\textbf{ double}[$\,$] \textbf{ json\+Flamme} (string path)
+\begin{DoxyCompactList}\small\item\em jsons the flamme. \end{DoxyCompactList}\item 
+\textbf{ double}[,] \textbf{ read\+Flamme} (string path)
+\begin{DoxyCompactList}\small\item\em reads the flamme. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ double} [$\,$]
+\begin{DoxyCompactList}\small\item\em Lectures the grosfichier. \end{DoxyCompactList}\item 
+\textbf{ Double} [,]
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+The read file. 
+
+Définition à la ligne \textbf{ 15} du fichier \textbf{ Read\+File.\+cs}.
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\label{class_api_test01_1_1_services_1_1_read_file_ab50dbaa5e8fd16066c4684f5ebae7184} 
+\index{ApiTest01.Services.ReadFile@{ApiTest01.Services.ReadFile}!Calcul\_centre@{Calcul\_centre}}
+\index{Calcul\_centre@{Calcul\_centre}!ApiTest01.Services.ReadFile@{ApiTest01.Services.ReadFile}}
+\doxysubsubsection{Calcul\_centre()}
+{\footnotesize\ttfamily string Api\+Test01.\+Services.\+Read\+File.\+Calcul\+\_\+centre (\begin{DoxyParamCaption}\item[{string}]{mnt\+File }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Paramètres}
+{\em mnt\+File} & The mnt file.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+A string.
+\end{DoxyReturn}
+
+
+Définition à la ligne \textbf{ 22} du fichier \textbf{ Read\+File.\+cs}.
+
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+% FIG 0
+Voici le graphe des appelants de cette fonction \+:
+% FIG 1
+\label{class_api_test01_1_1_services_1_1_read_file_a9e3e4c35f4924ec13f2029affbe83c56} 
+\index{ApiTest01.Services.ReadFile@{ApiTest01.Services.ReadFile}!ConvertToJaggedArray$<$ T $>$@{ConvertToJaggedArray$<$ T $>$}}
+\index{ConvertToJaggedArray$<$ T $>$@{ConvertToJaggedArray$<$ T $>$}!ApiTest01.Services.ReadFile@{ApiTest01.Services.ReadFile}}
+\doxysubsubsection{ConvertToJaggedArray$<$ T $>$()}
+{\footnotesize\ttfamily T[$\,$][$\,$] Api\+Test01.\+Services.\+Read\+File.\+Convert\+To\+Jagged\+Array$<$ T $>$ (\begin{DoxyParamCaption}\item[{T}]{multi\+Array[,] }\end{DoxyParamCaption})}
+
+
+
+Convert to jagged array. 
+
+
+\begin{DoxyTemplParams}{Paramètres du template}
+{\em T} & \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Paramètres}
+{\em multi\+Array} & The multi array.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+An array of TS.
+\end{DoxyReturn}
+
+
+Définition à la ligne \textbf{ 340} du fichier \textbf{ Read\+File.\+cs}.
+
+\label{class_api_test01_1_1_services_1_1_read_file_a201eae51a0a26da9549130412cf90815} 
+\index{ApiTest01.Services.ReadFile@{ApiTest01.Services.ReadFile}!Get\_bbox@{Get\_bbox}}
+\index{Get\_bbox@{Get\_bbox}!ApiTest01.Services.ReadFile@{ApiTest01.Services.ReadFile}}
+\doxysubsubsection{Get\_bbox()}
+{\footnotesize\ttfamily string Api\+Test01.\+Services.\+Read\+File.\+Get\+\_\+bbox (\begin{DoxyParamCaption}\item[{string}]{mnt\+File }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Paramètres}
+{\em mnt\+File} & The mnt file.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+A string.
+\end{DoxyReturn}
+
+
+Définition à la ligne \textbf{ 59} du fichier \textbf{ Read\+File.\+cs}.
+
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+% FIG 2
+Voici le graphe des appelants de cette fonction \+:
+% FIG 3
+\label{class_api_test01_1_1_services_1_1_read_file_a4988b39230030508f3f215edf76e9578} 
+\index{ApiTest01.Services.ReadFile@{ApiTest01.Services.ReadFile}!jsonFlamme@{jsonFlamme}}
+\index{jsonFlamme@{jsonFlamme}!ApiTest01.Services.ReadFile@{ApiTest01.Services.ReadFile}}
+\doxysubsubsection{jsonFlamme()}
+{\footnotesize\ttfamily \textbf{ double}[$\,$] Api\+Test01.\+Services.\+Read\+File.\+json\+Flamme (\begin{DoxyParamCaption}\item[{string}]{path }\end{DoxyParamCaption})}
+
+
+
+jsons the flamme. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em path} & The path.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+An array of double.
+\end{DoxyReturn}
+
+
+Définition à la ligne \textbf{ 364} du fichier \textbf{ Read\+File.\+cs}.
+
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+% FIG 4
+\label{class_api_test01_1_1_services_1_1_read_file_a481445debe15c17d9140ce9246a85168} 
+\index{ApiTest01.Services.ReadFile@{ApiTest01.Services.ReadFile}!jsonRectangle@{jsonRectangle}}
+\index{jsonRectangle@{jsonRectangle}!ApiTest01.Services.ReadFile@{ApiTest01.Services.ReadFile}}
+\doxysubsubsection{jsonRectangle()}
+{\footnotesize\ttfamily \textbf{ double}[$\,$] Api\+Test01.\+Services.\+Read\+File.\+json\+Rectangle (\begin{DoxyParamCaption}\item[{string}]{path }\end{DoxyParamCaption})}
+
+
+
+jsons the rectangle. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em path} & The path.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+An array of double.
+\end{DoxyReturn}
+
+
+Définition à la ligne \textbf{ 195} du fichier \textbf{ Read\+File.\+cs}.
+
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+% FIG 5
+\label{class_api_test01_1_1_services_1_1_read_file_a8353bbd921d7d261dc380fee9eeae5b0} 
+\index{ApiTest01.Services.ReadFile@{ApiTest01.Services.ReadFile}!Lambert93ToWGS84@{Lambert93ToWGS84}}
+\index{Lambert93ToWGS84@{Lambert93ToWGS84}!ApiTest01.Services.ReadFile@{ApiTest01.Services.ReadFile}}
+\doxysubsubsection{Lambert93ToWGS84()}
+{\footnotesize\ttfamily \textbf{ double}[$\,$] Api\+Test01.\+Services.\+Read\+File.\+Lambert93\+To\+WGS84 (\begin{DoxyParamCaption}\item[{\textbf{ double}}]{x,  }\item[{\textbf{ double}}]{y }\end{DoxyParamCaption})}
+
+
+
+Lambert93 the to WG s84. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em x} & The X.\\
+\hline
+{\em y} & The Y.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+An array of double.
+\end{DoxyReturn}
+
+
+Définition à la ligne \textbf{ 288} du fichier \textbf{ Read\+File.\+cs}.
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 6
+\label{class_api_test01_1_1_services_1_1_read_file_adda346a2206d422d12a5e160f1db1f79} 
+\index{ApiTest01.Services.ReadFile@{ApiTest01.Services.ReadFile}!lecture\_grosfichier@{lecture\_grosfichier}}
+\index{lecture\_grosfichier@{lecture\_grosfichier}!ApiTest01.Services.ReadFile@{ApiTest01.Services.ReadFile}}
+\doxysubsubsection{lecture\_grosfichier()}
+{\footnotesize\ttfamily \textbf{ double} Api\+Test01.\+Services.\+Read\+File.\+lecture\+\_\+grosfichier (\begin{DoxyParamCaption}\item[{string}]{mnt\+File,  }\item[{string}]{path }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne \textbf{ 105} du fichier \textbf{ Read\+File.\+cs}.
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 7
+\label{class_api_test01_1_1_services_1_1_read_file_ae1d215a5c43e6dda05a6febaef43def0} 
+\index{ApiTest01.Services.ReadFile@{ApiTest01.Services.ReadFile}!readFlamme@{readFlamme}}
+\index{readFlamme@{readFlamme}!ApiTest01.Services.ReadFile@{ApiTest01.Services.ReadFile}}
+\doxysubsubsection{readFlamme()}
+{\footnotesize\ttfamily \textbf{ double}[,] Api\+Test01.\+Services.\+Read\+File.\+read\+Flamme (\begin{DoxyParamCaption}\item[{string}]{path }\end{DoxyParamCaption})}
+
+
+
+reads the flamme. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em path} & The path.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+An array of double.
+\end{DoxyReturn}
+
+
+Définition à la ligne \textbf{ 400} du fichier \textbf{ Read\+File.\+cs}.
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 8
+\label{class_api_test01_1_1_services_1_1_read_file_ac26fc4e2dbda1b5f99d37e01dfe9bb83} 
+\index{ApiTest01.Services.ReadFile@{ApiTest01.Services.ReadFile}!WGS84ToLambert93@{WGS84ToLambert93}}
+\index{WGS84ToLambert93@{WGS84ToLambert93}!ApiTest01.Services.ReadFile@{ApiTest01.Services.ReadFile}}
+\doxysubsubsection{WGS84ToLambert93()}
+{\footnotesize\ttfamily \textbf{ double}[$\,$] Api\+Test01.\+Services.\+Read\+File.\+WGS84\+To\+Lambert93 (\begin{DoxyParamCaption}\item[{\textbf{ double}}]{longitude,  }\item[{\textbf{ double}}]{latitude }\end{DoxyParamCaption})}
+
+
+
+WGS the s84 to lambert93. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em longitude} & The longitude.\\
+\hline
+{\em latitude} & The latitude.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+An array of double.
+\end{DoxyReturn}
+
+
+Définition à la ligne \textbf{ 231} du fichier \textbf{ Read\+File.\+cs}.
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 9
+
+
+\doxysubsection{Documentation des données membres}
+\label{class_api_test01_1_1_services_1_1_read_file_a4a58e8fe8ef4a4c826223cafb2eca142} 
+\index{ApiTest01.Services.ReadFile@{ApiTest01.Services.ReadFile}!Double@{Double}}
+\index{Double@{Double}!ApiTest01.Services.ReadFile@{ApiTest01.Services.ReadFile}}
+\doxysubsubsection{Double}
+{\footnotesize\ttfamily Api\+Test01.\+Services.\+Read\+File.\+Double[,]}
+
+
+
+Définition à la ligne \textbf{ 105} du fichier \textbf{ Read\+File.\+cs}.
+
+\label{class_api_test01_1_1_services_1_1_read_file_a6b4a684d19ef201e68b97dd0f8d9bb89} 
+\index{ApiTest01.Services.ReadFile@{ApiTest01.Services.ReadFile}!double@{double}}
+\index{double@{double}!ApiTest01.Services.ReadFile@{ApiTest01.Services.ReadFile}}
+\doxysubsubsection{double}
+{\footnotesize\ttfamily Api\+Test01.\+Services.\+Read\+File.\+double[$\,$]}
+
+
+
+Lectures the grosfichier. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em mnt\+File} & The mnt file.\\
+\hline
+{\em path} & The path.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+A (double[], double[], Double[,], double).
+\end{DoxyReturn}
+
+
+Définition à la ligne \textbf{ 105} du fichier \textbf{ Read\+File.\+cs}.
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+Services/\textbf{ Read\+File.\+cs}\end{DoxyCompactItemize}

@@ -1,0 +1,71 @@
+\doxysection{Référence de la classe Api\+Test01.\+Controllers.\+Fonction4\+Controller}
+\label{class_api_test01_1_1_controllers_1_1_fonction4_controller}\index{ApiTest01.Controllers.Fonction4Controller@{ApiTest01.Controllers.Fonction4Controller}}
+
+
+The fonction4 controller.  
+
+
+
+
+Graphe d\textquotesingle{}héritage de Api\+Test01.\+Controllers.\+Fonction4\+Controller\+:
+% FIG 0
+
+
+Graphe de collaboration de Api\+Test01.\+Controllers.\+Fonction4\+Controller\+:
+% FIG 1
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ List$<$ List$<$ Double $>$ $>$ $>$ \textbf{ Post} (string mnt\+\_\+file, string rect\+\_\+file, string front\+\_\+file, string flamme\+\_\+file, double humi, double vent\+\_\+force, double vent\+\_\+direction)
+\begin{DoxyCompactList}\small\item\em Post a list of list of list of double. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+The fonction4 controller. 
+
+Définition à la ligne \textbf{ 18} du fichier \textbf{ Fonction4\+Controller.\+cs}.
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\label{class_api_test01_1_1_controllers_1_1_fonction4_controller_abe9f4a7ae3786762399bf7504ee67d24} 
+\index{ApiTest01.Controllers.Fonction4Controller@{ApiTest01.Controllers.Fonction4Controller}!Post@{Post}}
+\index{Post@{Post}!ApiTest01.Controllers.Fonction4Controller@{ApiTest01.Controllers.Fonction4Controller}}
+\doxysubsubsection{Post()}
+{\footnotesize\ttfamily List$<$ List$<$ List$<$ Double $>$ $>$ $>$ Api\+Test01.\+Controllers.\+Fonction4\+Controller.\+Post (\begin{DoxyParamCaption}\item[{string}]{mnt\+\_\+file,  }\item[{string}]{rect\+\_\+file,  }\item[{string}]{front\+\_\+file,  }\item[{string}]{flamme\+\_\+file,  }\item[{double}]{humi,  }\item[{double}]{vent\+\_\+force,  }\item[{double}]{vent\+\_\+direction }\end{DoxyParamCaption})}
+
+
+
+Post a list of list of list of double. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em mnt\+\_\+file} & The mnt file.\\
+\hline
+{\em rect\+\_\+file} & The rect file.\\
+\hline
+{\em front\+\_\+file} & The front file.\\
+\hline
+{\em flamme\+\_\+file} & The flamme file.\\
+\hline
+{\em humi} & The humi.\\
+\hline
+{\em vent\+\_\+force} & The vent force.\\
+\hline
+{\em vent\+\_\+direction} & The vent direction.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+A List$<$List$<$List$<$Double$>$$>$$>$.
+\end{DoxyReturn}
+
+
+Définition à la ligne \textbf{ 33} du fichier \textbf{ Fonction4\+Controller.\+cs}.
+
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+% FIG 2
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+Controllers/\textbf{ Fonction4\+Controller.\+cs}\end{DoxyCompactItemize}

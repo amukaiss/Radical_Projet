@@ -1,0 +1,295 @@
+  % Handle batch mode
+  % to overcome problems with too many open files
+  \let\mypdfximage\pdfximage\def\pdfximage{\immediate\mypdfximage}
+  \pdfminorversion=7
+  % Set document class depending on configuration
+  \documentclass[twoside]{book}
+  %% moved from doxygen.sty due to workaround for LaTex 2019 version and unmaintained tabu package
+  \usepackage{ifthen}
+  \ifx\requestedLaTeXdate\undefined
+    \usepackage{array}
+  \else
+    \usepackage{array}[=2016-10-06]
+  \fi
+  %%
+  % Packages required by doxygen
+  \makeatletter
+  \providecommand\IfFormatAtLeastTF{\@ifl@t@r\fmtversion}
+  % suppress package identification of infwarerr as it contains the word "warning"
+  \let\@@protected@wlog\protected@wlog
+  \def\protected@wlog#1{\wlog{package info suppressed}}
+  \RequirePackage{infwarerr}
+  \let\protected@wlog\@@protected@wlog
+  \makeatother
+  \IfFormatAtLeastTF{2016/01/01}{}{\usepackage{fixltx2e}} % for \textsubscript
+  \IfFormatAtLeastTF{2015/01/01}{\pdfsuppresswarningpagegroup=1}{}
+  \usepackage{doxygen}
+  \usepackage{graphicx}
+  \usepackage[utf8]{inputenc}
+  \usepackage{makeidx}
+  \PassOptionsToPackage{warn}{textcomp}
+  \usepackage{textcomp}
+  \usepackage[nointegrals]{wasysym}
+  \usepackage{ifxetex}
+  % NLS support packages
+  \usepackage[french]{babel}
+\NoAutoSpaceBeforeFDP
+  % Define default fonts
+  % Font selection
+  \usepackage[T1]{fontenc}
+  % set main and monospaced font
+  \usepackage[scaled=.90]{helvet}
+\usepackage{courier}
+\renewcommand{\familydefault}{\sfdefault}
+  \doxyallsectionsfont{%
+    \fontseries{bc}\selectfont%
+    \color{darkgray}%
+  }
+  \renewcommand{\DoxyLabelFont}{%
+    \fontseries{bc}\selectfont%
+    \color{darkgray}%
+  }
+  \newcommand{\+}{\discretionary{\mbox{\scriptsize$\hookleftarrow$}}{}{}}
+   % Arguments of doxygenemoji:
+   % 1) ':<text>:' form of the emoji, already LaTeX-escaped
+   % 2) file with the name of the emoji without the .png extension
+   % in case image exist use this otherwise use the ':<text>:' form
+   \newcommand{\doxygenemoji}[2]{%
+     \IfFileExists{./#2.png}{\raisebox{-0.1em}{\includegraphics[height=0.9em]{./#2.png}}}{#1}%
+   }
+  % Page & text layout
+  \usepackage{geometry}
+  \geometry{%
+    a4paper,%
+    top=2.5cm,%
+    bottom=2.5cm,%
+    left=2.5cm,%
+    right=2.5cm%
+  }
+  \usepackage{changepage}
+  % Allow a bit of overflow to go unnoticed by other means
+  \tolerance=750
+  \hfuzz=15pt
+  \hbadness=750
+  \setlength{\emergencystretch}{15pt}
+  \setlength{\parindent}{0cm}
+  \newcommand{\doxynormalparskip}{\setlength{\parskip}{3ex plus 2ex minus 2ex}}
+  \newcommand{\doxytocparskip}{\setlength{\parskip}{1ex plus 0ex minus 0ex}}
+  \doxynormalparskip
+  % Redefine paragraph/subparagraph environments, using sectsty fonts
+  \makeatletter
+  \renewcommand{\paragraph}{%
+    \@startsection{paragraph}{4}{0ex}{-1.0ex}{1.0ex}{%
+      \normalfont\normalsize\bfseries\SS@parafont%
+    }%
+  }
+  \renewcommand{\subparagraph}{%
+    \@startsection{subparagraph}{5}{0ex}{-1.0ex}{1.0ex}{%
+      \normalfont\normalsize\bfseries\SS@subparafont%
+    }%
+  }
+  \makeatother
+  \makeatletter
+  \newcommand\hrulefilll{\leavevmode\leaders\hrule\hskip 0pt plus 1filll\kern\z@}
+  \makeatother
+  % Headers & footers
+  \usepackage{fancyhdr}
+  \pagestyle{fancyplain}
+  \renewcommand{\footrulewidth}{0.4pt}
+  \fancypagestyle{fancyplain}{
+    \fancyhf{}
+    \fancyhead[LE, RO]{\bfseries\thepage}
+    \fancyhead[LO]{\bfseries\rightmark}
+    \fancyhead[RE]{\bfseries\leftmark}
+    \fancyfoot[LO, RE]{\bfseries\scriptsize Généré par Doxygen }
+  }
+  \fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[LO, RE]{\bfseries\scriptsize Généré par Doxygen }
+    \renewcommand{\headrulewidth}{0pt}
+  }
+  \pagestyle{fancyplain}
+  \renewcommand{\chaptermark}[1]{%
+    \markboth{#1}{}%
+  }
+  \renewcommand{\sectionmark}[1]{%
+    \markright{\thesection\ #1}%
+  }
+  % ToC, LoF, LoT, bibliography, and index
+  % Indices & bibliography
+  \usepackage{natbib}
+  \usepackage[titles]{tocloft}
+  \setcounter{tocdepth}{3}
+  \setcounter{secnumdepth}{5}
+  % creating indexes
+  \makeindex
+  \usepackage{newunicodechar}
+  \makeatletter
+    \def\doxynewunicodechar#1#2{%
+    \@tempswafalse
+    \edef\nuc@tempa{\detokenize{#1}}%
+    \if\relax\nuc@tempa\relax
+      \nuc@emptyargerr
+    \else
+      \edef\@tempb{\expandafter\@car\nuc@tempa\@nil}%
+      \nuc@check
+      \if@tempswa
+        \@namedef{u8:\nuc@tempa}{#2}%
+      \fi
+    \fi
+  }
+  \makeatother
+  \doxynewunicodechar{⁻}{${}^{-}$}% Superscript minus
+  \doxynewunicodechar{²}{${}^{2}$}% Superscript two
+  \doxynewunicodechar{³}{${}^{3}$}% Superscript three
+  % Hyperlinks
+  % Custom commands used by the header
+  % Custom commands
+  \newcommand{\clearemptydoublepage}{%
+    \newpage{\pagestyle{empty}\cleardoublepage}%
+  }
+  % caption style definition
+  \usepackage{caption}
+  \captionsetup{labelsep=space,justification=centering,font={bf},singlelinecheck=off,skip=4pt,position=top}
+  % in page table of contents
+  \IfFormatAtLeastTF{2023/05/01}{\usepackage[deeplevels]{etoc}}{\usepackage[deeplevels]{etoc_doxygen}}
+  \etocsettocstyle{\doxytocparskip}{\doxynormalparskip}
+  \etocsetlevel{subsubsubsection}{4}
+  \etocsetlevel{subsubsubsubsection}{5}
+  \etocsetlevel{subsubsubsubsubsection}{6}
+  \etocsetlevel{subsubsubsubsubsubsection}{7}
+  \etocsetlevel{paragraph}{8}
+  \etocsetlevel{subparagraph}{9}
+  % prevent numbers overlap the titles in toc
+  \renewcommand{\numberline}[1]{#1~}
+% End of preamble, now comes the document contents
+%===== C O N T E N T S =====
+\begin{document}
+  \raggedbottom
+  % Titlepage & ToC
+  \pagenumbering{alph}
+  \begin{titlepage}
+  \vspace*{7cm}
+  \begin{center}%
+  {\Large API Radical}\\
+  [1ex]\large 3.\+4 aplha \\
+  \vspace*{1cm}
+  {\large Généré par Doxygen 1.10.0}\\
+  \end{center}
+  \end{titlepage}
+  \clearemptydoublepage
+  \pagenumbering{roman}
+  \tableofcontents
+  \clearemptydoublepage
+  \pagenumbering{arabic}
+%--- Begin generated contents ---
+\chapter{Index des espaces de nommage}
+\input{namespaces}
+\chapter{Index hiérarchique}
+\input{hierarchy}
+\chapter{Index des classes}
+\input{annotated}
+\chapter{Index des fichiers}
+\input{files}
+\chapter{Documentation des espaces de nommage}
+\input{namespace_api_test01}
+\input{namespace_api_test01_1_1_controllers}
+\input{namespace_api_test01_1_1_models}
+\input{namespace_api_test01_1_1_services}
+\chapter{Documentation des classes}
+\input{class_api_test01_1_1_models_1_1_abaque}
+\input{class_api_test01_1_1_services_1_1_abaque}
+\input{class_api_test01_1_1_models_1_1_angles}
+\input{class_api_test01_1_1_services_1_1_database}
+\input{class_api_test01_1_1_models_1_1_dynamic_front}
+\input{class_api_test01_1_1_models_1_1_feature}
+\input{class_api_test01_1_1_models_1_1_flamme}
+\input{class_api_test01_1_1_services_1_1_fonction1}
+\input{class_api_test01_1_1_services_1_1_fonction2}
+\input{class_api_test01_1_1_services_1_1_fonction3}
+\input{class_api_test01_1_1_controllers_1_1_fonction4_controller}
+\input{class_api_test01_1_1_models_1_1_front}
+\input{class_api_test01_1_1_models_1_1_front_json}
+\input{class_api_test01_1_1_models_1_1_geometry}
+\input{class_api_test01_1_1_models_1_1_geometry2}
+\input{class_api_test01_1_1_models_1_1_geometry3}
+\input{class_api_test01_1_1_controllers_1_1_getbbox_controller}
+\input{class_api_test01_1_1_controllers_1_1_getcenter_controller}
+\input{class_api_test01_1_1_models_1_1_i_s_o_f_l_u_x}
+\input{class_api_test01_1_1_models_1_1_line_front}
+\input{class_api_test01_1_1_models_1_1_multi_front}
+\input{class_api_test01_1_1_models_1_1_param}
+\input{class_api_test01_1_1_program}
+\input{class_api_test01_1_1_models_1_1_properties}
+\input{class_api_test01_1_1_models_1_1_properties2}
+\input{class_api_test01_1_1_models_1_1_properties3}
+\input{class_api_test01_1_1_controllers_1_1_query_database_controller}
+\input{class_api_test01_1_1_services_1_1_read_file}
+\input{class_api_test01_1_1_startup}
+\input{class_api_test01_1_1_models_1_1_test}
+\input{class_api_test01_1_1_models_1_1_todo_item}
+\input{class_api_test01_1_1_models_1_1voisinage_list}
+\input{class_api_test01_1_1_controllers_1_1_weather_forecast_controller}
+\chapter{Documentation des fichiers}
+\input{_fonction4_controller_8cs}
+\input{_fonction4_controller_8cs_source}
+\input{_getbbox_controller_8cs}
+\input{_getbbox_controller_8cs_source}
+\input{_getcenter_controller_8cs}
+\input{_getcenter_controller_8cs_source}
+\input{_query_database_8cs}
+\input{_query_database_8cs_source}
+\input{_weather_forecast_controller_8cs}
+\input{_weather_forecast_controller_8cs_source}
+\input{_abaque_8cs}
+\input{_abaque_8cs_source}
+\input{_angles_8cs}
+\input{_angles_8cs_source}
+\input{_dynamic_front_8cs}
+\input{_dynamic_front_8cs_source}
+\input{_flamme_8cs}
+\input{_flamme_8cs_source}
+\input{_front_8cs}
+\input{_front_8cs_source}
+\input{_front_json_8cs}
+\input{_front_json_8cs_source}
+\input{_line_front_8cs}
+\input{_line_front_8cs_source}
+\input{_multi_front_8cs}
+\input{_multi_front_8cs_source}
+\input{_param_8cs}
+\input{_param_8cs_source}
+\input{_test_8cs}
+\input{_test_8cs_source}
+\input{_todo_item_8cs}
+\input{_todo_item_8cs_source}
+\input{voisinage_list_8cs}
+\input{voisinage_list_8cs_source}
+\input{_8_n_e_t_core_app_00_version_0av3_81_8_assembly_attributes_8cs}
+\input{_8_n_e_t_core_app_00_version_0av3_81_8_assembly_attributes_8cs_source}
+\input{_api_test01_8_assembly_info_8cs}
+\input{_api_test01_8_assembly_info_8cs_source}
+\input{_program_8cs}
+\input{_program_8cs_source}
+\input{_database_8cs}
+\input{_database_8cs_source}
+\input{_fonction1_8cs}
+\input{_fonction1_8cs_source}
+\input{_fonction2_8cs}
+\input{_fonction2_8cs_source}
+\input{_fonction3_8cs}
+\input{_fonction3_8cs_source}
+\input{_read_file_8cs}
+\input{_read_file_8cs_source}
+\input{_startup_8cs}
+\input{_startup_8cs_source}
+%--- End generated contents ---
+% Index
+  \backmatter
+  \newpage
+  \phantomsection
+  \clearemptydoublepage
+  \addcontentsline{toc}{chapter}{\indexname}
+  \printindex
+% Required for some languages (in combination with latexdocumentpre from the header)
+\end{document}

@@ -1,0 +1,4 @@
+{"type":"FeatureCollection", "features": [
+{"type":"Feature","geometry":{"type":"MultiLineString","coordinates":[[[7.176132,43.863786],[7.177280239190371,43.86432528677034]],[[7.178685820172695,43.86485704712042],[7.180767,43.865457],[7.18214,43.865859]]]},"properties":{"Id":21400,"NIV1_14":3,"LIB1_14":"FORETS ET MILIEUX SEMI-NATURELS","NIV2_14":31,"LIB2_14":"Forets","NIV3_14":311,"LIB3_14":"Forets de feuillus","Area_m2":2792981.7388,"Area_ha":279.2981739,"Donnee_exo":"BD FORET IFN - Images Landsat 8","DOUTE_14":"Non"}},
+{"type":"Feature","geometry":{"type":"LineString","coordinates":[[7.177280239190371,43.86432528677034],[7.177978,43.864653],[7.178685820172695,43.86485704712042]]},"properties":{"Id":139132,"NIV1_14":3,"LIB1_14":"FORETS ET MILIEUX SEMI-NATURELS","NIV2_14":31,"LIB2_14":"Forets","NIV3_14":313,"LIB3_14":"Forets melangees","Area_m2":678842.1025,"Area_ha":67.8842103,"Donnee_exo":"BD FORET IFN - Images Landsat 8","DOUTE_14":"Non"}}
+]}

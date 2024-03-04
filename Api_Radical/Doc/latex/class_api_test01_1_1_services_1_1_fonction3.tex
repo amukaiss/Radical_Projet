@@ -1,0 +1,185 @@
+\doxysection{Référence de la classe Api\+Test01.\+Services.\+Fonction3}
+\label{class_api_test01_1_1_services_1_1_fonction3}\index{ApiTest01.Services.Fonction3@{ApiTest01.Services.Fonction3}}
+
+
+Fonction \+: classe contient les fonctions suivantes \+: Angle\+\_\+direction\+\_\+ellipse, Voisinage\+\_\+ifeu, Voisinage, Calcul\+\_\+isoflux, Chercher2.  
+
+
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+double[$\,$] \textbf{ Angle\+\_\+direction\+\_\+ellipse} (double lfl, double vent\+\_\+force, double vent\+\_\+direction, Vector3 normal)
+\begin{DoxyCompactList}\small\item\em Cette fonction calcule l\textquotesingle{}angle, la direction d\textquotesingle{}inclinaison et la hauteur de flamme. \end{DoxyCompactList}\item 
+int[$\,$] \textbf{ Voisinage\+\_\+ifeu} (int ifeu, double xf, double yf, int nx, int ny, int[,] dans\+Feu, int[,] num\+Mesh, double rayon, double[,] prad, double pemissif, double[,] X, double[,] Y)
+\begin{DoxyCompactList}\small\item\em Voisinage\+\_\+ifeu calcul les noeuds du maillage du terrain, voisins d\textquotesingle{}un site en feu "{}ifeu"{} recevant le flux de chaleur dans un rayon assez grand. \end{DoxyCompactList}\item 
+double[,] \textbf{ Calcul\+\_\+isoflux} (double xf, double yf, double pemissif, int ny, int nx, double[,] X, double[,] Y, double teta\+\_\+flamme, double[,] bdata, double diametre, int[$\,$] voisins, double[,] prad)
+\begin{DoxyCompactList}\small\item\em Calcul\+\_\+iso\+\_\+fluxe \+: calcul les iso-\/flux à chaque noeud du maillage. \end{DoxyCompactList}\item 
+List$<$ Bson\+Document $>$ \textbf{ Chercher2} (double lon, double ra, double inc, double humi)
+\begin{DoxyCompactList}\small\item\em Cette fonction d\textquotesingle{}extraire les ellipses des iso-\/flux normalisés dans la base de donnéees "{}\+Mongo\+DB"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Fonction \+: classe contient les fonctions suivantes \+: Angle\+\_\+direction\+\_\+ellipse, Voisinage\+\_\+ifeu, Voisinage, Calcul\+\_\+isoflux, Chercher2. 
+
+Définition à la ligne \textbf{ 16} du fichier \textbf{ Fonction3.\+cs}.
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\label{class_api_test01_1_1_services_1_1_fonction3_ac3e85718e36878a1217216bd7397e81d} 
+\index{ApiTest01.Services.Fonction3@{ApiTest01.Services.Fonction3}!Angle\_direction\_ellipse@{Angle\_direction\_ellipse}}
+\index{Angle\_direction\_ellipse@{Angle\_direction\_ellipse}!ApiTest01.Services.Fonction3@{ApiTest01.Services.Fonction3}}
+\doxysubsubsection{Angle\_direction\_ellipse()}
+{\footnotesize\ttfamily double[$\,$] Api\+Test01.\+Services.\+Fonction3.\+Angle\+\_\+direction\+\_\+ellipse (\begin{DoxyParamCaption}\item[{double}]{lfl,  }\item[{double}]{vent\+\_\+force,  }\item[{double}]{vent\+\_\+direction,  }\item[{Vector3}]{normal }\end{DoxyParamCaption})}
+
+
+
+Cette fonction calcule l\textquotesingle{}angle, la direction d\textquotesingle{}inclinaison et la hauteur de flamme. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em lfl} & Longueur de flamme.\\
+\hline
+{\em vent\+\_\+force} & Force du vent.\\
+\hline
+{\em vent\+\_\+direction} & Direction du vent.\\
+\hline
+{\em normal} & Normal du terrain.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Returne un tableau contenant\+: angle, direction d\textquotesingle{}inclinaison et hauteur.
+\end{DoxyReturn}
+
+
+Définition à la ligne \textbf{ 26} du fichier \textbf{ Fonction3.\+cs}.
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 0
+\label{class_api_test01_1_1_services_1_1_fonction3_a1a6b9513bd4c096ef07481c06c6aa76f} 
+\index{ApiTest01.Services.Fonction3@{ApiTest01.Services.Fonction3}!Calcul\_isoflux@{Calcul\_isoflux}}
+\index{Calcul\_isoflux@{Calcul\_isoflux}!ApiTest01.Services.Fonction3@{ApiTest01.Services.Fonction3}}
+\doxysubsubsection{Calcul\_isoflux()}
+{\footnotesize\ttfamily double[,] Api\+Test01.\+Services.\+Fonction3.\+Calcul\+\_\+isoflux (\begin{DoxyParamCaption}\item[{double}]{xf,  }\item[{double}]{yf,  }\item[{double}]{pemissif,  }\item[{int}]{ny,  }\item[{int}]{nx,  }\item[{double}]{X[,],  }\item[{double}]{Y[,],  }\item[{double}]{teta\+\_\+flamme,  }\item[{double}]{bdata[,],  }\item[{double}]{diametre,  }\item[{int[$\,$]}]{voisins,  }\item[{double}]{prad[,] }\end{DoxyParamCaption})}
+
+
+
+Calcul\+\_\+iso\+\_\+fluxe \+: calcul les iso-\/flux à chaque noeud du maillage. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em xf} & Coordonnée x du site en feu.\\
+\hline
+{\em yf} & Coordonnée y du site en feu.\\
+\hline
+{\em pemissif} & Pouvoir emissif du site en feu.\\
+\hline
+{\em ny} & Nombre total de noeuds selon y.\\
+\hline
+{\em nx} & Nombre total de noeuds selon x.\\
+\hline
+{\em X} & Tableau contient tous les x du maillage.\\
+\hline
+{\em Y} & Tableau contient tous les y du maillage.\\
+\hline
+{\em teta\+\_\+flamme} & Angle d\textquotesingle{}inclainaison de flamme.\\
+\hline
+{\em bdata} & Donnees extraites de la base de données pour un site en feu.\\
+\hline
+{\em diametre} & Diametre du site en feu.\\
+\hline
+{\em voisins} & Voisins du site en feu.\\
+\hline
+{\em prad} & Tableau contenant la puissance radiative de tous les points du maillage.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Retourne un tableau des iso-\/flux.
+\end{DoxyReturn}
+
+
+Définition à la ligne \textbf{ 177} du fichier \textbf{ Fonction3.\+cs}.
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 1
+\label{class_api_test01_1_1_services_1_1_fonction3_aaf5bfca88969fc73a667fc810c0f7289} 
+\index{ApiTest01.Services.Fonction3@{ApiTest01.Services.Fonction3}!Chercher2@{Chercher2}}
+\index{Chercher2@{Chercher2}!ApiTest01.Services.Fonction3@{ApiTest01.Services.Fonction3}}
+\doxysubsubsection{Chercher2()}
+{\footnotesize\ttfamily List$<$ Bson\+Document $>$ Api\+Test01.\+Services.\+Fonction3.\+Chercher2 (\begin{DoxyParamCaption}\item[{double}]{lon,  }\item[{double}]{ra,  }\item[{double}]{inc,  }\item[{double}]{humi }\end{DoxyParamCaption})}
+
+
+
+Cette fonction d\textquotesingle{}extraire les ellipses des iso-\/flux normalisés dans la base de donnéees "{}\+Mongo\+DB"{}. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em lon} & Longueur de flamme.\\
+\hline
+{\em ra} & Rayon de flamme.\\
+\hline
+{\em inc} & Inclinaison de flamme.\\
+\hline
+{\em humi} & Humidité du milieu.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Returne des ellipses des iso-\/flux.
+\end{DoxyReturn}
+
+
+Définition à la ligne \textbf{ 243} du fichier \textbf{ Fonction3.\+cs}.
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 2
+\label{class_api_test01_1_1_services_1_1_fonction3_a3bc7a51dbff612cc7a600126a695acd1} 
+\index{ApiTest01.Services.Fonction3@{ApiTest01.Services.Fonction3}!Voisinage\_ifeu@{Voisinage\_ifeu}}
+\index{Voisinage\_ifeu@{Voisinage\_ifeu}!ApiTest01.Services.Fonction3@{ApiTest01.Services.Fonction3}}
+\doxysubsubsection{Voisinage\_ifeu()}
+{\footnotesize\ttfamily int[$\,$] Api\+Test01.\+Services.\+Fonction3.\+Voisinage\+\_\+ifeu (\begin{DoxyParamCaption}\item[{int}]{ifeu,  }\item[{double}]{xf,  }\item[{double}]{yf,  }\item[{int}]{nx,  }\item[{int}]{ny,  }\item[{int}]{dans\+Feu[,],  }\item[{int}]{num\+Mesh[,],  }\item[{double}]{rayon,  }\item[{double}]{prad[,],  }\item[{double}]{pemissif,  }\item[{double}]{X[,],  }\item[{double}]{Y[,] }\end{DoxyParamCaption})}
+
+
+
+Voisinage\+\_\+ifeu calcul les noeuds du maillage du terrain, voisins d\textquotesingle{}un site en feu "{}ifeu"{} recevant le flux de chaleur dans un rayon assez grand. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em ifeu} & numéro du site en feu.\\
+\hline
+{\em xf} & Coordonnée x du site en feu.\\
+\hline
+{\em yf} & coordonnée y du site en feu.\\
+\hline
+{\em nx} & nombre total de noeuds du maillage selon x.\\
+\hline
+{\em ny} & nombre total de noeuds du maillage selon y.\\
+\hline
+{\em dans\+Feu} & Référence 1 si le noeud est en feu et 0 sinon\\
+\hline
+{\em num\+Mesh} & Numéro du noeud dans le maillage.\\
+\hline
+{\em rayon} & Rayon du site en feu.\\
+\hline
+{\em prad} & Tableau contenant la puissance radiative de points du maillages (points receptifs)\\
+\hline
+{\em pemissif} & Pouvoir emissif du site en feu.\\
+\hline
+{\em X} & Tableau contenant les x du maillage.\\
+\hline
+{\em Y} & Tableau contenant les y du maillage.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+returne un tableau des entiers \+: les numéros du noeuds voisins
+\end{DoxyReturn}
+
+
+Définition à la ligne \textbf{ 121} du fichier \textbf{ Fonction3.\+cs}.
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 3
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+Services/\textbf{ Fonction3.\+cs}\end{DoxyCompactItemize}

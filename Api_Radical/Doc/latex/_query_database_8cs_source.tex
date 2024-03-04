@@ -1,0 +1,44 @@
+\doxysection{Query\+Database.\+cs}
+\label{_query_database_8cs_source}\index{Controllers/QueryDatabase.cs@{Controllers/QueryDatabase.cs}}
+\textbf{ Aller à la documentation de ce fichier.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{keyword}{using\ }ApiTest01.Models;}
+\DoxyCodeLine{00002\ \textcolor{keyword}{using\ }ApiTest01.Services;}
+\DoxyCodeLine{00003\ \textcolor{keyword}{using\ }System.Collections.Generic;}
+\DoxyCodeLine{00004\ \textcolor{keyword}{using\ }Microsoft.AspNetCore.Mvc;}
+\DoxyCodeLine{00005\ \textcolor{keyword}{using\ }MongoDB.Bson;}
+\DoxyCodeLine{00006\ \textcolor{keyword}{using\ }MongoDB.Driver;}
+\DoxyCodeLine{00007\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }ApiTest01.Controllers}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ [Route(\textcolor{stringliteral}{"{}api/[controller]"{}})]}
+\DoxyCodeLine{00015\ \ \ \ \ [ApiController]}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }QueryDatabaseController\ :\ Controller}
+\DoxyCodeLine{00018\ \ \ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ [HttpPost]}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ List<BsonDocument>\ Post()}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ public\ void\ Post()}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ var\ dbClient\ =\ \textcolor{keyword}{new}\ MongoClient(\textcolor{stringliteral}{"{}mongodb://localhost:27017"{}});}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ var\ dbList\ =\ dbClient.ListDatabases().ToList();}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ IMongoDatabase\ db\ =\ dbClient.GetDatabase(\textcolor{stringliteral}{"{}BD\_Radical"{}});}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ var\ abaques\ =\ db.GetCollection<BsonDocument>(\textcolor{stringliteral}{"{}Abaques"{}});}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ var\ builder\ =\ Builders<BsonDocument>.Filter;}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ var\ filter\ =\ builder.Eq(\textcolor{stringliteral}{"{}Inclinaison\_de\_flamme"{}},\ 25)\ \&\ builder.Eq(\textcolor{stringliteral}{"{}Humidite"{}},\ 20)\ \&\ builder.Eq(\textcolor{stringliteral}{"{}Longueur\_de\_flamme"{}},\ 4);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ var\ docs\ =\ abaques.Find(filter).Project(Builders<BsonDocument>.Projection.Include(\textcolor{stringliteral}{"{}ISOFLUX"{}})).Limit(1).ToList();}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ docs.ForEach(doc\ =>}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.WriteLine(doc);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ var\ newList\ =\ \textcolor{keyword}{new}\ List<BsonDocument>();}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ newList\ =\ docs;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ newList;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00044\ \ \ \ \ \}}
+\DoxyCodeLine{00045\ \}}
+
+\end{DoxyCode}

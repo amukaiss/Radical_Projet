@@ -1,0 +1,4 @@
+{"type":"FeatureCollection", "features": [
+{"type":"Feature","geometry":{"type":"LineString","coordinates":[[7.152263,43.884311],[7.152434,43.88479],[7.153174,43.885014],[7.153366450294118,43.885042999359385]]},"properties":{"Id":21377,"NIV1_14":3,"LIB1_14":"FORETS ET MILIEUX SEMI-NATURELS","NIV2_14":31,"LIB2_14":"Forets","NIV3_14":312,"LIB3_14":"Forets de coniferes","Area_m2":190337.0781,"Area_ha":19.0337078,"Donnee_exo":"BD FORET IFN - Images Landsat 8","DOUTE_14":"Non"}},
+{"type":"Feature","geometry":{"type":"LineString","coordinates":[[7.153366450294118,43.885042999359385],[7.153539,43.885069]]},"properties":{"Id":21368,"NIV1_14":3,"LIB1_14":"FORETS ET MILIEUX SEMI-NATURELS","NIV2_14":31,"LIB2_14":"Forets","NIV3_14":313,"LIB3_14":"Forets melangees","Area_m2":72282.0283,"Area_ha":7.2282028,"Donnee_exo":"BD FORET IFN - Images Landsat 8","DOUTE_14":"Non"}}
+]}

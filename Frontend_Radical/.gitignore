@@ -1,0 +1,17 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+
+# misc
+
+tmp/*
+tmp2/*
+npm-debug.log*
+
+/public/Data/*
+/assets/*
+/Api_Radical/*
+/package-lock.json
+
+.vscode

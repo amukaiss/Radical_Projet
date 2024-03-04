@@ -1,0 +1,98 @@
+% installation nodejs 
+sudo apt update
+sudo apt install nodejs
+nodejs -v
+sudo apt install npm
+
+%intallation dotnet
+sudo apt-get update && \
+  sudo apt-get install -y dotnet-sdk-8.0
+  
+ sudo apt-get update && \
+  sudo apt-get install -y aspnetcore-runtime-8.0
+ 
+sudo apt-get install -y dotnet-runtime-8.0
+
+%installation de mongoDB  Community Edition
+%https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/
+sudo apt-get install gnupg curl
+
+curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | \
+   sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
+   --dearmor
+ 
+ echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+ 
+ sudo apt-get update
+ 
+ sudo apt-get install -y mongodb-org
+ 
+ echo "mongodb-org hold" | sudo dpkg --set-selections
+echo "mongodb-org-database hold" | sudo dpkg --set-selections
+echo "mongodb-org-server hold" | sudo dpkg --set-selections
+echo "mongodb-mongosh hold" | sudo dpkg --set-selections
+echo "mongodb-org-mongos hold" | sudo dpkg --set-selections
+echo "mongodb-org-tools hold" | sudo dpkg --set-selections
+
+%Run MongoDB Community Edition
+
+%Si vous n'êtes pas sûr de savoir quel système init votre plate-forme utilise, exécutez le commande suivante:
+ps --no-headers -o comm 1
+
+% systemd
+sudo systemctl start mongod
+
+
+si vous recevez une erreur similaire à ce qui suit au début du traitement mongod:
+
+Failed to start mongod.service: Unit mongod.service not found.
+
+Exécuter d'abord la commande suivante:
+
+sudo systemctl daemon-reload
+
+Puis lancez à nouveau la commande de départ ci-dessus.
+
+sudo service mongod status
+
+Arrêtez MongoDB.
+
+Au besoin, vous pouvez arrêter le mongodprocessus par la délivrance du commande suivante:
+
+sudo service mongod stop
+
+Télécharger et installer Compass : https://www.mongodb.com/docs/compass/current/install/
+
+Télécharger MongoDB Compass
+
+wget https://downloads.mongodb.com/compass/mongodb-compass_1.40.4_amd64.deb
+
+Installer MongoDB Compass
+
+sudo dpkg -i mongodb-compass_1.40.4_amd64.deb
+
+Démarrer la passouste MongoDB
+
+mongodb-compass
+
+
+%GIT
+
+git config --global user.name "amukaiss"
+git config --global user.email ahmed.kaiss@univ-amu.fr
+
+git config --global --list
+
+dans le dossier 
+git init
+
+
+pour dotnet 6.0
+
+https://bobbyhadz.com/blog/fatal-error-ocurred-the-folder-usr-share-dotnet-host-fx-does-not-exist  
+
+
+
+
+
+

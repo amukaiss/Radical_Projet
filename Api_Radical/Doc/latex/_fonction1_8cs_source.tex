@@ -1,0 +1,64 @@
+\doxysection{Fonction1.\+cs}
+\label{_fonction1_8cs_source}\index{Services/Fonction1.cs@{Services/Fonction1.cs}}
+\textbf{ Aller à la documentation de ce fichier.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{00002\ \textcolor{keyword}{using\ }System.IO;}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{namespace\ }ApiTest01.Services}
+\DoxyCodeLine{00005\ \{}
+\DoxyCodeLine{00006\ \ \ \ \ }
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }Fonction1}
+\DoxyCodeLine{00011\ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ (\textcolor{keywordtype}{double}[,],\textcolor{keywordtype}{double}[,])\ Maillage\_Domaine\_Carre(\textcolor{keywordtype}{string}\ rectangle,\ \textcolor{keywordtype}{double}[]\ xmnt,\ \textcolor{keywordtype}{double}[]\ ymnt,\ \textcolor{keywordtype}{double}\ pas)}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ ReadFile\ r\ =\ \textcolor{keyword}{new}\ ReadFile();}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}[]\ list\ =\ r.jsonRectangle(rectangle);}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ xmin\ =\ list[0];}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ ymin\ =\ list[1];}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ xmax\ =\ list[2];}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ ymax\ =\ list[3];}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ a\ =\ xmnt[xmnt.Length\ -\/\ 1]\ -\/\ xmnt[0];}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ b\ =\ ymnt[ymnt.Length\ -\/\ 1]\ -\/\ ymnt[0];}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ nx\ =\ (int)Math.Floor(a\ /\ pas)\ ;}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ny\ =\ (int)Math.Floor(b\ /\ pas)\ ;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}[,]\ X\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{double}[ny,\ nx];}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}[,]\ Y\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{double}[ny,\ nx];}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ ny;\ j++)}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ nx;\ i++)}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ X[j,\ i]\ =\ xmnt[0]\ +\ i\ *\ pas;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Y[j,\ i]\ =\ ymnt[0]\ +\ j\ *\ pas;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (X,\ Y);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{double}[,]\ Elevation\_Domaine(\textcolor{keywordtype}{double}[,]\ X,\ \textcolor{keywordtype}{double}[,]\ Y,\ \textcolor{keywordtype}{double}[]\ xmnt,\ \textcolor{keywordtype}{double}[]\ ymnt,\ \textcolor{keywordtype}{double}[,]\ zmnt,\ \textcolor{keywordtype}{double}\ cellsize)}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}[,]\ Z\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{double}[X.GetLength(0),\ X.GetLength(1)];}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ic;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ jc;}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ X.GetLength(0);\ j++)}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ X.GetLength(1);\ i++)}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ic\ =\ (int)Math.Floor((X[j,\ i]\ -\/\ xmnt[0])\ /\ cellsize);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ jc\ =\ (int)Math.Floor((Y[j,\ i]\ -\/\ ymnt[0])\ /\ cellsize);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ alpha\ =\ (X[j,\ i]\ -\/\ xmnt[ic])\ /\ cellsize;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ beta\ =\ (Y[j,\ i]\ -\/\ ymnt[jc])\ /\ cellsize;}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Z[j,\ i]\ =\ (1\ -\/\ alpha)\ *\ ((1\ -\/\ beta)\ *\ zmnt[jc,\ ic]\ +\ beta\ *\ zmnt[jc\ +\ 1,\ ic])\ +}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ alpha\ *\ ((1\ -\/\ beta)\ *\ zmnt[jc,\ ic\ +\ 1]\ +\ beta\ *\ zmnt[jc\ +\ 1,\ ic\ +\ 1]);}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Z;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \}}
+
+\end{DoxyCode}

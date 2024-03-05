@@ -1,0 +1,12 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+Backend_Radical/node_modules
+
+# misc
+
+Backend_Radical/ps2f/*.txt
+Backend_Radical/ps2f/visualize/__pycache__
+Backend_Radical/ps2f/visualize/.script_temp
+
+Backend_Radical/package-lock.json

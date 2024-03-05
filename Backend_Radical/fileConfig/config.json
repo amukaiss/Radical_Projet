@@ -1,0 +1,15 @@
+{
+    "dbLocal": {
+        "server": "127.0.0.1",
+        "port": "27017"
+    },
+    "dbServer": {
+        "username": "admin",
+        "password": "polytech",
+        "server": "139.124.86.142",
+        "port": "27017"
+    },
+    "api": {
+        "url": "https://localhost"
+    }
+}

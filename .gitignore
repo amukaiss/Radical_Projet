@@ -10,5 +10,6 @@ Backend_Radical/ps2f/visualize/__pycache__
 Backend_Radical/ps2f/visualize/.script_temp
 
 Backend_Radical/package-lock.json
-Api_Radial/bin/*
+Api_Radical/bin/*
 Api_Radical/obj/*
+files/*

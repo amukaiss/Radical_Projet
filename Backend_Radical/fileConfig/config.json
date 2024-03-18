@@ -6,10 +6,10 @@
     "dbServer": {
         "username": "admin",
         "password": "polytech",
-        "server": "139.124.86.142",
+        "server": "radical.valabre.net",
         "port": "27017"
     },
     "api": {
-        "url": "https://localhost"
+        "url": "https://radical.valabre.net"
     }
 }

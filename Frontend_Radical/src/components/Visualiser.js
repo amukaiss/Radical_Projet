@@ -15,7 +15,7 @@ import config from "../config.json";
 // import * as path from "path";
 // import common from "../common";
 // const FS = config.fileServer.url;
-const FS = " https://localhost:444/uploads";
+const FS = " https://radical.valabre.net:444/uploads";
 // const colors = {
 //   crimsonRed: "#9D0208",
 //   guardsmanRed: "#D00000",

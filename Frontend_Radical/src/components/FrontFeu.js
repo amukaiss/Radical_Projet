@@ -16,7 +16,7 @@ import { Box, Typography, withStyles } from "@material-ui/core";
 // import common from "../common";
 import config from "../config.json";
 // const FS = config.fileServer.url;
-const FS = " https://localhost:444/uploads";
+const FS = " https://radical.valabre.net:444/uploads";
 const BorderLinearProgress = withStyles((theme) => ({
   root: {
     height: 5,

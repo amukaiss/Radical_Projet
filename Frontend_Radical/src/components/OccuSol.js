@@ -16,7 +16,7 @@ import NIV from "../common";
 
 const baseURL = axiosClient.apiURL;
 // const FS = config.fileServer.url;
-const FS = " https://localhost:444/uploads";
+const FS = " https://radical.valabre.net:444/uploads";
 
 window.infos = [];
 window.chargeC = "";

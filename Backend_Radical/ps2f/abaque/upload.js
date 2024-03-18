@@ -148,7 +148,7 @@ router.post('/front', async function (req, res) {
     await mapshaper.runCommands(cmd);
     
     let target1 = `../files/tmp/${id_project}/${nameProject}_frontFeu.json`;
-    target1 = target1.replace(/\//g, '\\');
+    //target1 = target1.replace(/\//g, '\\');
     const cmd2 = target1 + ' -explode ' + ` -o force ../files/tmp/${id_project}/` + nameProject + "_frontFeuOrder.json";
     await mapshaper.runCommands(cmd2);
     let dest = path.resolve(newFilePath, `${nameProject}_frontFeu.json`);

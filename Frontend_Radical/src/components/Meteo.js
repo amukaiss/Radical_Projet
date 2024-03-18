@@ -7,7 +7,7 @@ import axiosClient from "../apiClient";
 import { toast } from "react-toastify";
 import axios from "axios";
 // const FS = config.fileServer.url;
-const FS = " https://localhost:444/uploads";
+const FS = " https://radical.valabre.net:444/uploads";
 
 window.dateAcquired = "";
 window.timeAcquired = "";

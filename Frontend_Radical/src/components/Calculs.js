@@ -13,7 +13,7 @@ import apiClient from "../apiClient";
 import { Link } from "react-router-dom";
 
 // const FS = config.fileServer.url;
-const FS = " https://localhost:444/uploads";
+const FS = " https://radical.valabre.net:444/uploads";
 
 const BorderLinearProgress = withStyles((theme) => ({
   root: {
